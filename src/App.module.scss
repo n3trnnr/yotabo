@@ -1,0 +1,5 @@
+@use './styles/variables';
+
+.class-name {
+    background-color: variables.$color-blue;
+}
