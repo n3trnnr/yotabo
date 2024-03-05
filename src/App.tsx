@@ -1,10 +1,9 @@
-import styles from './App.module.scss'
+import Layout from './components/Layout/Layout'
 
 const App = () => {
-
   return (
     <>
-      <div className={styles['class-name']}>Yotabo</div>
+      <Layout />
     </>
   )
 }

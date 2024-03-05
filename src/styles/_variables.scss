@@ -8,6 +8,42 @@ $color-black: black;
 $color-blue: #5E9EFF;
 $color-light-red: #FF7474;
 
-$font-size-title: 18px;
-$font-size-text-content: 16px;
-$font-size-technical-info: 14px;
+%square-button-size{
+    width: 45px;
+    height: 45px;
+}
+
+%rectangular-button-size{
+    width: 156px;
+    height: 45px;
+}
+
+%element-position-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%font-title{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+%font-technical-title{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+%font-content{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+%font-technical-content{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+%margin-menu-elements{
+    margin-left: 10px;
+}
