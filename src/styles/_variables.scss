@@ -8,42 +8,54 @@ $color-black: black;
 $color-blue: #5E9EFF;
 $color-light-red: #FF7474;
 
-%square-button-size{
+%square-button-size {
     width: 45px;
     height: 45px;
 }
 
-%rectangular-button-size{
+%rectangular-button-size {
     width: 156px;
     height: 45px;
 }
 
-%element-position-center{
+%element-position-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-%font-title{
+%font-title {
     font-size: 18px;
     font-weight: 600;
 }
 
-%font-technical-title{
+%font-technical-title {
     font-size: 18px;
     font-weight: 500;
 }
 
-%font-content{
+%font-content {
     font-size: 16px;
     font-weight: 400;
 }
 
-%font-technical-content{
+%font-technical-content {
     font-size: 14px;
     font-weight: 400;
 }
 
-%margin-menu-elements{
+%margin-menu-elements {
     margin-left: 10px;
+}
+
+%icon-color-black {
+    path {
+        fill: black;
+    }
+}
+
+%icon-color-white {
+    path {
+        fill: white;
+    }
 }
