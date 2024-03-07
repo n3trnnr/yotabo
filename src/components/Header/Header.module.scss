@@ -1,5 +1,56 @@
+@use '../../styles/variables';
+
 header {
     width: 100%;
-    height: 10%;
-    border-bottom: 1px solid black;
+    height: 15%;
+    box-sizing: border-box;
+    border-bottom: 1px solid variables.$color-light-grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-search {
+    width: 40%;
+    height: 45px;
+    margin-left: 30px;
+    border: 1px solid variables.$color-light-grey;
+    border-radius: variables.$main-radius;
+    text-align: center;
+    @extend %font-technical-title;
+
+    &:focus {
+        border: 1px solid black;
+    }
+}
+
+.nav-header {
+    width: 60%
+}
+
+.header-nav-items-list {
+    @extend %element-position-center;
+    justify-content: flex-end;
+    margin-right: 66px;
+
+    .header-nav-item {
+        @extend %square-button-size;
+        background: variables.$color-dark-grey;
+        @extend %element-position-center;
+        margin-right: variables.$margin-menu-elements;
+        border-radius: variables.$main-radius;
+        list-style-type: none;
+        box-sizing: border-box;
+        transition: variables.$transition-time;
+        cursor: pointer;
+
+        &:hover {
+            background: white;
+            border: 1px solid black;
+
+            path {
+                fill: black;
+            }
+        }
+    }
 }

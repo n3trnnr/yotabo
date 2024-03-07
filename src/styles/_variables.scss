@@ -1,6 +1,9 @@
 $main-radius: 10px;
 $modal-window-radius: 20px;
 
+$margin-menu-elements: 10px;
+$transition-time: 100ms;
+
 $color-white: white;
 $color-dark-grey: #464646;
 $color-light-grey: #9C9C9C;
@@ -30,7 +33,7 @@ $color-light-red: #FF7474;
 }
 
 %font-technical-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -42,10 +45,6 @@ $color-light-red: #FF7474;
 %font-technical-content {
     font-size: 14px;
     font-weight: 400;
-}
-
-%margin-menu-elements {
-    margin-left: 10px;
 }
 
 %icon-color-black {
