@@ -10,22 +10,49 @@ header {
     align-items: center;
 }
 
-.input-search {
-    width: 40%;
-    height: 45px;
-    margin-left: 30px;
-    border: 1px solid variables.$color-light-grey;
-    border-radius: variables.$main-radius;
-    text-align: center;
-    @extend %font-technical-title;
+.search-form {
+    width: 50%;
+    @extend %element-position-center;
 
-    &:focus {
-        border: 1px solid black;
+    .input-search {
+        width: 80%;
+        height: 45px;
+        margin-left: 30px;
+        border: 1px solid variables.$color-light-grey;
+        border-radius: variables.$main-radius;
+        text-align: center;
+        @extend %font-technical-title;
+
+        &:focus {
+            border: 1px solid black;
+        }
+    }
+
+    .btn-send-search-form {
+        @extend %square-button-size;
+        @extend %element-position-center;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid variables.$color-light-grey;
+        margin-left: 10px;
+        cursor: pointer;
+
+        path {
+            fill: variables.$color-light-grey;
+        }
+
+        &:hover {
+            border: 1px solid black;
+
+            path {
+                fill: black;
+            }
+        }
     }
 }
 
-.nav-header {
-    width: 60%
+.header-nav {
+    width: 50%
 }
 
 .header-nav-items-list {

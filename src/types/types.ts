@@ -21,3 +21,8 @@ interface ITask {
     files: File
 }
 
+interface ISidebarPages {
+    key: string;
+    title: string;
+    icon: JSX.Element;
+}

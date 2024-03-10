@@ -9,7 +9,7 @@ const Layout = () => {
         <>
             <Aside />
             <div className={styles['main-section-container']}>
-                <Header />
+                <Header children='' />
                 <Main />
             </div>
         </>
