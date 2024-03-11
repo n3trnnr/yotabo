@@ -1,10 +1,16 @@
 import React from "react";
 
-const Button = () => {
+interface IButton {
+    chirdren: JSX.Element;
+    title: string;
+    styleName: string;
+}
+
+const Button = ({ chirdren, title, styleName }: IButton) => {
     return (
-        <>
-            Button
-        </>
+        <Button>
+            {chirdren}
+        </Button>
     );
 }
 

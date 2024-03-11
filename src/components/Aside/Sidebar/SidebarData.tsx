@@ -34,7 +34,7 @@ export const SidebarData = [
         key: nanoid(),
         title: 'Log out',
         icon: (styleName: string): JSX.Element => {
-            return <SvgIcons iconName={'log-out'} styleName={styleName} />
+            return <SvgIcons iconName={'logOut'} styleName={styleName} />
         }
     }
 ]

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import React from "react";
 import styles from './Sidebar.module.scss'
 import { SidebarData } from './SidebarData.tsx'

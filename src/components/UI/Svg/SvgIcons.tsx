@@ -20,59 +20,40 @@ import BoardView from '../../../assets/board-view.svg?react'
 import ListView from '../../../assets/list-view.svg?react'
 import Description from '../../../assets/description.svg?react'
 
+const iconsList = {
+    logo: Logo,
+    dashboard: Dashboard,
+    projects: Projects,
+    settings: Settings,
+    trash: Trash,
+    logOut: LogOut,
+    search: Search,
+    lightTheme: LightTheme,
+    notification: Notification,
+    user: User,
+    burgerMenu: BurgerMenu,
+    attachFile: AttachFile,
+    inProgress: InProgress,
+    deadline: Deadline,
+    uploadFile: Upload,
+    filter: Filter,
+    addNewElement: AddNewElement,
+    boardView: BoardView,
+    listView: ListView,
+    description: Description
+}
+
 interface ISvgIcons {
-    iconName: 'logo' | 'dashboard' | 'projects' | 'settings' | 'trash' |
-    'log-out' | 'search' | 'light-theme' | 'notification' | 'user' |
-    'burger-menu' | 'attach-file' | 'in-progress' | 'deadline' | 'upload-file' |
-    'filter' | 'add-new-element' | 'board-view' | 'list-view' | 'description';
+    iconName: keyof typeof iconsList;
     styleName: string;
 }
 
 const SvgIcons = ({ iconName, styleName }: ISvgIcons) => {
 
-    switch (iconName) {
-        case 'logo':
-            return <Logo className={styleName} />
-        case 'dashboard':
-            return <Dashboard className={styleName} />
-        case 'projects':
-            return <Projects className={styleName} />
-        case 'settings':
-            return <Settings className={styleName} />
-        case 'trash':
-            return <Trash className={styleName} />
-        case 'log-out':
-            return <LogOut className={styleName} />
-        case 'search':
-            return <Search className={styleName} />
-        case 'light-theme':
-            return <LightTheme className={styleName} />
-        case 'notification':
-            return <Notification className={styleName} />
-        case 'user':
-            return <User className={styleName} />
-        case 'burger-menu':
-            return <BurgerMenu className={styleName} />
-        case 'attach-file':
-            return <AttachFile className={styleName} />
-        case 'in-progress':
-            return <InProgress className={styleName} />
-        case 'deadline':
-            return <Deadline className={styleName} />
-        case 'upload-file':
-            return <Upload className={styleName} />
-        case 'filter':
-            return <Filter className={styleName} />
-        case 'add-new-element':
-            return <AddNewElement className={styleName} />
-        case 'board-view':
-            return <BoardView className={styleName} />
-        case 'list-view':
-            return <ListView className={styleName} />
-        case 'description':
-            return <Description className={styleName} />
-        default: ''
-    }
+    const IconComponent = iconsList[iconName] as unknown as React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+    return (
+        <IconComponent className={styleName} />
+    )
 }
 
 export default SvgIcons
