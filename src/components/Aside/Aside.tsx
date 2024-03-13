@@ -7,10 +7,10 @@ const Aside: React.FC = () => {
     return (
         <aside className={styles.aside}>
             <div className={styles["logo-container"]}>
-                <div className={styles["logo-wrapper"]}>
+                <a className={styles["logo-wrapper"]}>
                     <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
-                    Yotabo
-                </div>
+                    <span>Yotabo</span>
+                </a>
             </div>
             <Sidebar />
         </aside>

@@ -16,7 +16,7 @@ $color-light-red: #FF7474;
     height: 45px;
 }
 
-%rectangular-button-size {
+%rectangle-button-size {
     width: 156px;
     height: 45px;
 }
@@ -49,12 +49,18 @@ $color-light-red: #FF7474;
 
 %icon-color-black {
     path {
-        fill: black;
+        fill: $color-black;
+    }
+}
+
+%icon-color-grey {
+    path {
+        fill: $color-light-grey;
     }
 }
 
 %icon-color-white {
     path {
-        fill: white;
+        fill: $color-white;
     }
 }

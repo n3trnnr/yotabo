@@ -1,0 +1,15 @@
+@use '../../../styles/variables';
+
+.header-nav {
+    width: 50%
+}
+
+.header-nav-items-list {
+    @extend %element-position-center;
+    justify-content: flex-end;
+    margin-right: 66px;
+
+    .button-wrapper {
+        margin-right: variables.$margin-menu-elements;
+    }
+}

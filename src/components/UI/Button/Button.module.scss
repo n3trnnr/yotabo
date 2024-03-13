@@ -1,0 +1,58 @@
+@use '../../../styles/variables';
+
+button {
+    border: none;
+    @extend %element-position-center;
+    transition: variables.$transition-time;
+    cursor: pointer;
+}
+
+.icon-wrapper {
+    @extend %element-position-center;
+}
+
+.title {
+    @extend %font-title;
+}
+
+.square {
+    @extend %square-button-size;
+    border-radius: variables.$main-radius;
+}
+
+.rectangle {
+    @extend %rectangle-button-size;
+    border-radius: variables.$main-radius;
+}
+
+.blue {
+    background: variables.$color-blue;
+    color: variables.$color-white;
+
+    &:hover {
+        background: rgba(variables.$color-blue, .8);
+        @extend %icon-color-white
+    }
+}
+
+.light-grey {
+    border: 1px solid variables.$color-light-grey;
+    background: white;
+    @extend %icon-color-grey;
+
+    &:hover {
+        border: none;
+        background: variables.$color-dark-grey;
+        @extend %icon-color-white;
+    }
+}
+
+.dark-grey {
+    background: variables.$color-dark-grey;
+
+    &:hover {
+        border: 1px solid variables.$color-light-grey;
+        background: white;
+        @extend %icon-color-grey;
+    }
+}

@@ -50,34 +50,3 @@ header {
         }
     }
 }
-
-.header-nav {
-    width: 50%
-}
-
-.header-nav-items-list {
-    @extend %element-position-center;
-    justify-content: flex-end;
-    margin-right: 66px;
-
-    .header-nav-item {
-        @extend %square-button-size;
-        background: variables.$color-dark-grey;
-        @extend %element-position-center;
-        margin-right: variables.$margin-menu-elements;
-        border-radius: variables.$main-radius;
-        list-style-type: none;
-        box-sizing: border-box;
-        transition: variables.$transition-time;
-        cursor: pointer;
-
-        &:hover {
-            background: white;
-            border: 1px solid black;
-
-            path {
-                fill: black;
-            }
-        }
-    }
-}
