@@ -8,8 +8,4 @@
     @extend %element-position-center;
     justify-content: flex-end;
     margin-right: 66px;
-
-    .button-wrapper {
-        margin-right: variables.$margin-menu-elements;
-    }
 }

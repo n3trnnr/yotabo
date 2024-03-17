@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react";
 import styles from './Sidebar.module.scss'
 import { SidebarData } from './SidebarData.tsx'
+import { Link } from "react-router-dom";
 
 interface ISidebarData {
     key: string;
     title: string;
+    path: string;
     icon: (styleName: string) => ReactNode;
 }
 
@@ -15,10 +17,12 @@ const Sidebar: React.FC = () => {
                 {SidebarData.map((item: ISidebarData) => (
                     item.title !== 'Log out' &&
                     <li key={item.key} className={styles["item-wrapper"]}>
-                        <a className={styles["nav-item"]} key={item.key}>
-                            {item.icon(styles['aside-nav-icon'])}
-                            <span>{item.title}</span>
-                        </a>
+                        <Link to={item.path} key={item.key}>
+                            <div className={styles["nav-item"]}>
+                                {item.icon(styles['aside-nav-icon'])}
+                                <span>{item.title}</span>
+                            </div>
+                        </Link>
                     </li>
                 ))}
             </ul>
@@ -26,10 +30,12 @@ const Sidebar: React.FC = () => {
                 {SidebarData.map((item: ISidebarData) => (
                     item.title === 'Log out' &&
                     <li key={item.key} className={styles["item-wrapper"]}>
-                        <a className={styles["nav-item"]}>
-                            {item.icon(styles['aside-nav-icon'])}
-                            <span>{item.title}</span>
-                        </a>
+                        <Link to={item.path} >
+                            <div className={styles["nav-item"]}>
+                                {item.icon(styles['aside-nav-icon'])}
+                                <span>{item.title}</span>
+                            </div>
+                        </Link>
                     </li>
                 ))}
             </ul>

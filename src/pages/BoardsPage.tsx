@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BoardsPage = () => {
+const BoardsPage: React.FC = () => {
     return (
         <>
             Boards

@@ -1,6 +1,6 @@
 @use '../../styles/variables';
 
-header {
+header.header {
     width: 100%;
     height: 15%;
     box-sizing: border-box;
@@ -11,42 +11,36 @@ header {
 }
 
 .search-form {
-    width: 50%;
     @extend %element-position-center;
+    justify-content: flex-start;
+    width: 40%;
+    height: 45px;
+    margin-left: 30px;
+    border: 1px solid variables.$color-light-grey;
+    border-radius: variables.$main-radius;
 
     .input-search {
-        width: 80%;
         height: 45px;
-        margin-left: 30px;
-        border: 1px solid variables.$color-light-grey;
-        border-radius: variables.$main-radius;
-        text-align: center;
+        width: 100%;
+        background: none;
+        border: none;
+        outline: 0;
+        margin-left: 10px;
         @extend %font-technical-title;
-
-        &:focus {
-            border: 1px solid black;
-        }
     }
 
-    .btn-send-search-form {
+    .search-button {
+        width: 45px;
+        height: 45px;
         @extend %square-button-size;
         @extend %element-position-center;
-        background: white;
-        border-radius: 10px;
-        border: 1px solid variables.$color-light-grey;
-        margin-left: 10px;
+        background: none;
+        border-radius: variables.$main-radius;
         cursor: pointer;
-
-        path {
-            fill: variables.$color-light-grey;
-        }
+        @extend %icon-color-grey;
 
         &:hover {
-            border: 1px solid black;
-
-            path {
-                fill: black;
-            }
+            @extend %icon-color-black;
         }
     }
 }

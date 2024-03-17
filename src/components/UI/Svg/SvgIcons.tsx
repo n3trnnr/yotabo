@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from '../../../assets/dashboard.svg?react'
 import Logo from '../../../assets/logo.svg?react'
 import Projects from '../../../assets/projects.svg?react'
+import Boards from '../../../assets/boards.svg?react'
 import Settings from '../../../assets/settings.svg?react'
 import Trash from '../../../assets/trash.svg?react'
 import LogOut from '../../../assets/log-out.svg?react'
@@ -24,6 +25,7 @@ const iconsList = {
     logo: Logo,
     dashboard: Dashboard,
     projects: Projects,
+    boards: Boards,
     settings: Settings,
     trash: Trash,
     logOut: LogOut,

@@ -9,7 +9,7 @@ const Aside: React.FC = () => {
             <div className={styles["logo-container"]}>
                 <a className={styles["logo-wrapper"]}>
                     <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
-                    <span>Yotabo</span>
+                    <h1>Yotabo</h1>
                 </a>
             </div>
             <Sidebar />

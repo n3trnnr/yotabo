@@ -7,18 +7,18 @@ const Nav: React.FC = () => {
     return (
         <nav className={styles["header-nav"]}>
             <ul className={styles["header-nav-items-list"]}>
-                <li className={styles['button-wrapper']}>
-                    <Button buttonShape={'square'} styleName={'blue'}>
+                <li>
+                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'lightTheme'} />
                     </Button>
                 </li>
-                <li className={styles['button-wrapper']}>
-                    <Button buttonShape={'square'} styleName={'dark-grey'}>
+                <li>
+                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'notification'} />
                     </Button>
                 </li>
-                <li className={styles['button-wrapper']}>
-                    <Button buttonShape={'square'} styleName={'light-grey'}>
+                <li>
+                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'user'} />
                     </Button>
                 </li>
