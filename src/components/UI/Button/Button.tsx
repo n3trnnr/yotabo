@@ -3,8 +3,8 @@ import styles from './Button.module.scss'
 
 interface IButton {
     children: ReactNode;
-    buttonShape: 'square' | 'rectangle';
-    styleName: 'blue' | 'dark-grey' | 'light-grey';
+    buttonShape?: 'square' | 'rectangle';
+    styleName: 'blue' | 'dark-grey' | 'light-grey' | 'none';
     handleClick?: () => void;
     title?: string;
     margin?: string;

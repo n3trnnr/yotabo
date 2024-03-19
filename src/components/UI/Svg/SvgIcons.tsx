@@ -20,6 +20,7 @@ import AddNewElement from '../../../assets/add-new-element.svg?react'
 import BoardView from '../../../assets/board-view.svg?react'
 import ListView from '../../../assets/list-view.svg?react'
 import Description from '../../../assets/description.svg?react'
+import Favourites from '../../../assets/favourites-false.svg?react'
 
 const iconsList = {
     logo: Logo,
@@ -42,7 +43,8 @@ const iconsList = {
     addNewElement: AddNewElement,
     boardView: BoardView,
     listView: ListView,
-    description: Description
+    description: Description,
+    favourites: Favourites
 }
 
 interface ISvgIcons {

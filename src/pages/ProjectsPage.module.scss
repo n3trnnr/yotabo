@@ -1,0 +1,8 @@
+@use '../styles/variables';
+
+.projects-list-wrapper {
+    display: flex;
+    margin: 20px 0 30px 30px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}

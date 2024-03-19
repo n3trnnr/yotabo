@@ -1,0 +1,31 @@
+@use '../../../styles/variables';
+
+.project-nav {
+    height: 45px;
+
+    .project-nav-list {
+        display: flex;
+
+        .nav-item {
+            width: 156px;
+            height: 45px;
+            box-sizing: border-box;
+            @extend %element-position-center;
+            margin-right: variables.$margin-menu-elements;
+            color: variables.$color-light-grey;
+            cursor: pointer;
+            transition: 100ms;
+            @extend %icon-color-grey;
+
+            &:hover {
+                border-bottom: 3px solid black;
+                color: variables.$color-black;
+                @extend %icon-color-black;
+            }
+
+            .icon-wrapper {
+                margin-right: variables.$margin-menu-elements;
+            }
+        }
+    }
+}

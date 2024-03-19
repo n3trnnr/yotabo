@@ -1,9 +1,20 @@
 import React from 'react';
+import MainSectionHeader from '../components/MainSectionHeader/MainSectionHeader'
+import Project from '../components/Project/Project';
+import styles from './ProjectsPage.module.scss'
 
-const ProjectsPage = () => {
+const ProjectsPage: React.FC = () => {
     return (
         <>
-            Projects
+            <MainSectionHeader />
+            <div className={styles['projects-list-wrapper']}>
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+            </div>
         </>
     );
 }

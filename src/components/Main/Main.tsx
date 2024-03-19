@@ -1,16 +1,14 @@
 import React from "react";
 import styles from './Main.module.scss'
-import SectionHeader from "./SectionHeader/SectionHeader";
 import Router from "../../router/Router";
-import Header from "../Header/Header";
+import GlobalHeader from "../GlobalHeader/GlobalHeader";
 
 const Main: React.FC = () => {
     return (
         <>
             <main className={styles.main}>
-                <Header children={''} />
+                <GlobalHeader children={''} />
                 <section className={styles.section}>
-                    <SectionHeader />
                     <Router />
                 </section>
             </main>

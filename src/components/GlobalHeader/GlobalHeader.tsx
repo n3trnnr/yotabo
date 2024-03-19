@@ -1,13 +1,13 @@
 import React from "react";
-import styles from './Header.module.scss'
+import styles from './GlobalHeader.module.scss'
 import Nav from "./Navigation/Nav";
 import SvgIcons from "../UI/Svg/SvgIcons";
 
-interface IHeader {
+interface IGlobalHeader {
     children: React.ReactNode,
 }
 
-const Header = ({ children }: IHeader) => {
+const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {
 
     return (
         <header className={styles['header']}>
@@ -29,4 +29,4 @@ const Header = ({ children }: IHeader) => {
     );
 }
 
-export default Header;
+export default GlobalHeader;

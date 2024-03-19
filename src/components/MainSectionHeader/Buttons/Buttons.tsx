@@ -1,8 +1,8 @@
 import React from "react";
-import SvgIcons from "../../../UI/Svg/SvgIcons";
-import Button from "../../../UI/Button/Button";
+import SvgIcons from "../../UI/Svg/SvgIcons";
+import Button from "../../UI/Button/Button";
 
-const SectionButtons: React.FC = () => {
+const Buttons: React.FC = () => {
     return (
         <>
             <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
@@ -24,4 +24,4 @@ const SectionButtons: React.FC = () => {
     );
 }
 
-export default SectionButtons;
+export default Buttons;
