@@ -8,6 +8,7 @@
     border-radius: variables.$main-radius;
     color: variables.$color-light-grey;
     position: relative;
+    cursor: pointer;
 
     .project-card-wrapper {
         width: 282px;
@@ -42,6 +43,9 @@
             bottom: 20px;
             right: 20px;
         }
+    }
 
+    &:hover {
+        outline: 2px solid variables.$color-dark-grey;
     }
 }

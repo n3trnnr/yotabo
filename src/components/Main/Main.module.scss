@@ -1,9 +1,11 @@
 main {
-    width: 85%;
+    width: 100vw;
     height: 100vh;
-    box-sizing: border-box;
 }
 
 .section {
-    height: 85%;
+    height: calc(100% - 105px);
+    width: 100%;
+    // width: calc(100% - 30px);
+    // overflow: auto;
 }

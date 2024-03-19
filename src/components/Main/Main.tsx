@@ -5,15 +5,12 @@ import GlobalHeader from "../GlobalHeader/GlobalHeader";
 
 const Main: React.FC = () => {
     return (
-        <>
-            <main className={styles.main}>
-                <GlobalHeader children={''} />
-                <section className={styles.section}>
-                    <Router />
-                </section>
-            </main>
-        </>
-
+        <main className={styles.main}>
+            <GlobalHeader children={''} />
+            <section className={styles.section}>
+                <Router />
+            </section>
+        </main>
     );
 }
 
