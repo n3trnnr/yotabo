@@ -1,0 +1,94 @@
+@use '../../styles/variables';
+
+.task-card-container {
+    position: relative;
+    width: 302px;
+    height: 157px;
+    margin: 15px;
+    border: 1px solid variables.$color-light-grey;
+    border-radius: variables.$main-radius;
+    cursor: pointer;
+
+    .cover {
+        width: 303px;
+        height: 130px;
+    }
+
+    &:hover {
+        box-shadow: 0 4px 16px 2px rgba(0, 26, 52, .16);
+        border: 1px solid white;
+        transform: translateY(2px);
+    }
+
+    .task-card-wrapper {
+        width: 262px;
+        height: 117px;
+        margin: 20px;
+
+        .title {
+            @extend %font-title;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            margin-bottom: 30px;
+        }
+
+        .info-bar {
+            @extend %element-position-center;
+            justify-content: flex-start;
+
+            .priority {
+                @extend %element-position-center;
+                margin-right: 20px
+            }
+
+            .deadline {
+                @extend %element-position-center;
+                margin-right: 20px;
+
+                .deadline-icon {
+                    margin-right: 5px;
+                }
+            }
+
+            .files {
+                @extend %element-position-center;
+
+                .files-icon {
+                    margin-right: 5px;
+                }
+            }
+
+            .burger-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+    }
+}
+
+.priority-high {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #FF0000;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.priority-med {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #FAFF00;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.priority-low {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #00FF47;
+    border-radius: 10px;
+    margin-right: 5px;
+}

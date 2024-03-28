@@ -1,21 +1,18 @@
 import React from "react";
-import styles from './MainSectionHeader.module.scss'
+import styles from './MainComponentHeader.module.scss'
 import Buttons from "./Buttons/Buttons";
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import ProjectNav from "./ProjectNav/ProjectNav";
 
-interface IMainSectionHeader {
+interface IMainComponentHeader {
     type: 'info' | 'none'
 }
 
-const MainSectionHeader: React.FC<IMainSectionHeader> = ({ type }) => {
+const MainComponentHeader: React.FC<IMainComponentHeader> = ({ type }) => {
 
     const setWidth = () => {
-        if (type === 'none') {
-            return '100%'
-        } else {
-            return '50%'
-        }
+        if (type === 'info') return '50%';
+        return '100%'
     }
 
     return (
@@ -33,4 +30,4 @@ const MainSectionHeader: React.FC<IMainSectionHeader> = ({ type }) => {
     );
 }
 
-export default MainSectionHeader;
+export default MainComponentHeader;

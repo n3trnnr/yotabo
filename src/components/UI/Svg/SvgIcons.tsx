@@ -54,7 +54,8 @@ interface ISvgIcons {
 
 const SvgIcons: React.FC<ISvgIcons> = ({ iconName, styleName }) => {
 
-    const IconComponent = iconsList[iconName] as unknown as React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+    const IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>> = iconsList[iconName]
+    // as unknown as React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
     return (
         <IconComponent className={styleName} />

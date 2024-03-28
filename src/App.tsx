@@ -1,12 +1,8 @@
-import Layout from './components/Layout/Layout'
 import './App.module.scss'
+import Router from './router/Router'
 
 const App = () => {
-  return (
-    <>
-      <Layout />
-    </>
-  )
+  return <Router />
 }
 
 export default App

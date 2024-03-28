@@ -17,7 +17,7 @@ const Sidebar: React.FC = () => {
                 {SidebarData.map((item: ISidebarData) => (
                     item.title !== 'Log out' &&
                     <li key={item.key} className={styles["item-wrapper"]}>
-                        <Link to={item.path} key={item.key}>
+                        <Link to={item.path}>
                             <div className={styles["nav-item"]}>
                                 {item.icon(styles['aside-nav-icon'])}
                                 <span>{item.title}</span>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MainSectionHeader from '../components/MainSectionHeader/MainSectionHeader'
-import Project from '../components/Project/Project';
+import MainComponentHeader from '../../components/MainComponentHeader/MainComponentHeader'
+import Project from '../../components/Project/Project';
 import styles from './ProjectsPage.module.scss'
+
+//Не забыть переписать путь в Link на projects/id
 
 const ProjectsPage: React.FC = () => {
 
@@ -10,7 +12,7 @@ const ProjectsPage: React.FC = () => {
 
     return (
         <>
-            <MainSectionHeader type={'none'} />
+            <MainComponentHeader type={'none'} />
             <div className={styles['projects-list-container']}>
                 <div className={styles['projects-list-wrapper']}>
 

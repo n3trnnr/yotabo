@@ -1,11 +1,9 @@
 main {
-    width: 100vw;
-    height: 100vh;
-}
-
-.section {
     height: calc(100% - 105px);
     width: 100%;
-    // width: calc(100% - 30px);
-    // overflow: auto;
 }
+
+// .section {
+//     height: 100%;
+//     width: 100%;
+// }

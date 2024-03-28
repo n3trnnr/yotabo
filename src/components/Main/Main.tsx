@@ -1,15 +1,13 @@
 import React from "react";
 import styles from './Main.module.scss'
-import Router from "../../router/Router";
-import GlobalHeader from "../GlobalHeader/GlobalHeader";
+import { Outlet } from "react-router-dom";
 
 const Main: React.FC = () => {
     return (
         <main className={styles.main}>
-            <GlobalHeader children={''} />
-            <section className={styles.section}>
-                <Router />
-            </section>
+            {/* <section className={styles.section}> */}
+            <Outlet />
+            {/* </section> */}
         </main>
     );
 }

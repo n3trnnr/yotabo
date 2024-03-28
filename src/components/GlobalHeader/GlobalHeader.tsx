@@ -4,7 +4,7 @@ import Nav from "./Navigation/Nav";
 import SvgIcons from "../UI/Svg/SvgIcons";
 
 interface IGlobalHeader {
-    children: React.ReactNode,
+    children?: React.ReactNode,
 }
 
 const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {

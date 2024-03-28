@@ -1,0 +1,39 @@
+import React from "react";
+import styles from './Board.module.scss'
+import SvgIcons from "../UI/Svg/SvgIcons";
+import Button from "../UI/Button/Button";
+
+const Board = () => {
+    return (
+        <>
+            <li className={styles["task-card-container"]}>
+                {/* <img className={styles.cover} src="" alt="cover" /> */}
+                <div className={styles["task-card-wrapper"]}>
+                    <h3 className={styles.title}>Frontend</h3>
+                    <p className={styles.description}>Разработать UI/UX kit, для прототипа нового приложения...</p>
+                    <div className={styles["info-bar"]}>
+                        <div className={styles.priority}>
+                            <div className={styles["priority-high"]}></div>
+                            <span>High</span>
+                        </div>
+                        <div className={styles.deadline}>
+                            <SvgIcons iconName={"inProgress"} styleName={styles["deadline-icon"]} />
+                            <span>Dec 24</span>
+                        </div>
+                        <div className={styles.files}>
+                            <SvgIcons iconName={"attachFile"} styleName={styles["files-icon"]} />
+                            <span>0</span>
+                        </div>
+                        <span className={styles['burger-menu']}>
+                            <Button styleName={'none'}>
+                                <SvgIcons iconName={'burgerMenu'} />
+                            </Button>
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </>
+    );
+}
+
+export default Board;
