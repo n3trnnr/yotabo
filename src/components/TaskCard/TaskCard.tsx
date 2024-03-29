@@ -1,9 +1,9 @@
 import React from "react";
-import styles from './Board.module.scss'
+import styles from './TaskCard.module.scss'
 import SvgIcons from "../UI/Svg/SvgIcons";
 import Button from "../UI/Button/Button";
 
-const Board = () => {
+const TaskCard: React.FC = () => {
     return (
         <>
             <li className={styles["task-card-container"]}>
@@ -36,4 +36,4 @@ const Board = () => {
     );
 }
 
-export default Board;
+export default TaskCard;

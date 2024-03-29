@@ -12,7 +12,7 @@ interface ISidebarData {
 
 const Sidebar: React.FC = () => {
     return (
-        <nav className={styles["aside-nav"]}>
+        <nav className={styles["aside-nav-wrapper"]}>
             <ul className={styles["main-nav-list"]}>
                 {SidebarData.map((item: ISidebarData) => (
                     item.title !== 'Log out' &&

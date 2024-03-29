@@ -9,6 +9,7 @@
     color: variables.$color-light-grey;
     position: relative;
     cursor: pointer;
+    transition: variables.$transition-time;
 
     .project-card-wrapper {
         width: 282px;

@@ -14,7 +14,7 @@
             margin-right: variables.$margin-menu-elements;
             color: variables.$color-light-grey;
             cursor: pointer;
-            transition: 100ms;
+            transition: variables.$transition-time;
             @extend %icon-color-grey;
 
             &:hover {

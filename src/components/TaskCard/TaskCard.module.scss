@@ -8,6 +8,7 @@
     border: 1px solid variables.$color-light-grey;
     border-radius: variables.$main-radius;
     cursor: pointer;
+    transition: variables.$transition-time;
 
     .cover {
         width: 303px;

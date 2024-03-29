@@ -1,0 +1,63 @@
+@use '../../styles/variables';
+
+%mark-style {
+    position: absolute;
+    left: 15px;
+    width: 21px;
+    height: 21px;
+    border-radius: variables.$main-radius;
+}
+
+.boards-container {
+    width: 100%;
+    height: calc(100% - 105px);
+    overflow: auto;
+    @extend %element-position-center;
+
+    .board-container {
+        width: 332px;
+        height: 100%;
+        margin: 0 15px;
+        position: relative;
+
+        .board-header {
+            width: 332px;
+            height: 45px;
+            background: white;
+            @extend %element-position-center;
+            position: fixed;
+            z-index: 100;
+
+            .mark-to-do {
+                @extend %mark-style;
+                background: #E67046;
+            }
+
+            .mark-in-progress {
+                @extend %mark-style;
+                background: #FFB72C;
+            }
+
+            .mark-done {
+                @extend %mark-style;
+                background: #1C9C75;
+            }
+
+            .board-title {
+                @extend %font-title;
+            }
+        }
+
+        .board-wrapper {
+            border: 1px solid variables.$color-light-grey;
+            border-radius: variables.$main-radius;
+            width: 100%;
+            margin-top: 45px;
+            // height: 663px;
+            overflow: auto;
+            scrollbar-width: none;
+
+            // .tasks-list-wrapper {}
+        }
+    }
+}
