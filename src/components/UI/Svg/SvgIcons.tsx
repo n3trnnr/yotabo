@@ -15,6 +15,7 @@ import AttachFile from '../../../assets/attach-file.svg?react'
 import InProgress from '../../../assets/in-progress.svg?react'
 import Deadline from '../../../assets/deadline.svg?react'
 import Upload from '../../../assets/upload-file.svg?react'
+import UploadCover from '../../../assets/upload-cover.svg?react'
 import Filter from '../../../assets/filter.svg?react'
 import AddNewElement from '../../../assets/add-new-element.svg?react'
 import BoardView from '../../../assets/board-view.svg?react'
@@ -39,6 +40,7 @@ const iconsList = {
     inProgress: InProgress,
     deadline: Deadline,
     uploadFile: Upload,
+    uploadCover: UploadCover,
     filter: Filter,
     addNewElement: AddNewElement,
     boardView: BoardView,

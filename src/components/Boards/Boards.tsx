@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Boards.module.scss'
 import TaskCard from "../TaskCard/TaskCard";
+import { Link } from "react-router-dom";
 
 const Boards: React.FC = () => {
     return (
@@ -12,7 +13,13 @@ const Boards: React.FC = () => {
                 </div>
                 <div className={styles["board-wrapper"]}>
                     <ul className={styles["tasks-list-wrapper"]}>
-                        <TaskCard />
+                        <Link to="/task">
+                            <TaskCard />
+                            <TaskCard />
+                            <TaskCard />
+                            <TaskCard />
+                            <TaskCard />
+                        </Link>
                     </ul>
                 </div>
             </div>

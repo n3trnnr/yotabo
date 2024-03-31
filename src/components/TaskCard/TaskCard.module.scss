@@ -27,17 +27,19 @@
         margin: 20px;
 
         .title {
-            @extend %font-title;
+            @extend %font-title-18px-semibold;
             margin-bottom: 10px;
         }
 
         .description {
             margin-bottom: 30px;
+            color: variables.$color-light-grey;
         }
 
         .info-bar {
             @extend %element-position-center;
             justify-content: flex-start;
+            color: variables.$color-light-grey;
 
             .priority {
                 @extend %element-position-center;
@@ -71,25 +73,13 @@
 }
 
 .priority-high {
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid #FF0000;
-    border-radius: 10px;
-    margin-right: 5px;
+    @extend %priority-high;
 }
 
 .priority-med {
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid #FAFF00;
-    border-radius: 10px;
-    margin-right: 5px;
+    @extend %priority-med;
 }
 
 .priority-low {
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid #00FF47;
-    border-radius: 10px;
-    margin-right: 5px;
+    @extend %priority-low;
 }

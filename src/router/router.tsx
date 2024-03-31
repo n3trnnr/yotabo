@@ -8,6 +8,7 @@ import ErrorPage from '../pages/ErrorPage';
 import NotFound from '../pages/NotFoundPage';
 import ProjectPage from '../pages/ProjectPage/ProjectPage';
 import Layout from '../components/Layout/Layout';
+import TaskPage from '../pages/TaskPage/TaskPage';
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout />} errorElement={<ErrorPage />}>
@@ -17,6 +18,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='settings' element={<SettingsPage />} />
         <Route path='trash' element={<TrashPage />} />
         <Route path='boards' element={<ProjectPage />} />
+        <Route path='task' element={<TaskPage />} />
         <Route path='*' element={<NotFound />} />
     </Route>
 ))

@@ -3,6 +3,8 @@ import styles from './TaskCard.module.scss'
 import SvgIcons from "../UI/Svg/SvgIcons";
 import Button from "../UI/Button/Button";
 
+//Изменить цвет шрифта на светло серый в описании и в инфо баре!
+
 const TaskCard: React.FC = () => {
     return (
         <>

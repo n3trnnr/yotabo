@@ -14,7 +14,7 @@ const Project: React.FC<IProject> = ({ title, description, creationDate }) => {
     return (
         <div className={styles['project-card-container']}>
             <div className={styles['project-card-wrapper']}>
-                <h3 className={styles.title}>{title}</h3>
+                <div className={styles.title}>{title}</div>
                 <p className={styles.description}>{description}</p>
                 <div className={styles['progress-bar']}>
                     <ProgressBar type={'small'} />

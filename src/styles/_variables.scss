@@ -27,9 +27,19 @@ $color-light-red: #FF7474;
     align-items: center;
 }
 
-%font-title {
+%font-titel-20px-semibold {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+%font-title-18px-semibold {
     font-size: 18px;
     font-weight: 600;
+}
+
+%font-title-18px-medium {
+    font-size: 18px;
+    font-weight: 500;
 }
 
 %font-technical-title {
@@ -37,7 +47,7 @@ $color-light-red: #FF7474;
     font-weight: 500;
 }
 
-%font-content {
+%font-content-16px-regular {
     font-size: 16px;
     font-weight: 400;
 }
@@ -63,4 +73,28 @@ $color-light-red: #FF7474;
     path {
         fill: $color-white;
     }
+}
+
+%priority-high {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #FF0000;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+%priority-med {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #FAFF00;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+%priority-low {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid #00FF47;
+    border-radius: 10px;
+    margin-right: 5px;
 }

@@ -1,7 +1,8 @@
 @use '../../styles/variables';
 
 .projects-list-container {
-    width: calc(100% - 66px);
+    width: 100%;
+    // width: calc(100% - 66px);
     height: calc(100% - 115px);
     border-radius: 10px;
     // margin: 0 0 0 30px;

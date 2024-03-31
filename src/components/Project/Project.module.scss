@@ -17,7 +17,8 @@
         margin: 20px;
 
         .title {
-            color: variables.$color-dark-grey;
+            @extend %font-title-18px-semibold;
+            color: black;
             margin-bottom: 10px;
         }
 

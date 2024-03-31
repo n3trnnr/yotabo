@@ -3,6 +3,7 @@ import styles from './MainComponentHeader.module.scss'
 import Buttons from "./Buttons/Buttons";
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import ProjectNav from "./ProjectNav/ProjectNav";
+import { useLocation } from "react-router-dom";
 
 interface IMainComponentHeader {
     type: 'info' | 'none'
