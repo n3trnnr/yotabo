@@ -23,6 +23,7 @@ const Boards: React.FC = () => {
                     </ul>
                 </div>
             </div>
+
             <div className={styles["board-container"]}>
                 <div className={styles["board-header"]}>
                     <div className={styles["mark-in-progress"]}></div>
@@ -34,6 +35,7 @@ const Boards: React.FC = () => {
                     </ul>
                 </div>
             </div>
+
             <div className={styles["board-container"]}>
                 <div className={styles["board-header"]}>
                     <div className={styles["mark-done"]}></div>

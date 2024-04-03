@@ -1,0 +1,21 @@
+@use '../../../styles/variables';
+
+.advanced-settings-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.info-wrapper {
+    width: 242px;
+    height: 156px;
+    border: 1px solid variables.$color-dark-grey;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+.files-wrapper {
+    width: 242px;
+    height: 156px;
+    border: 1px solid variables.$color-dark-grey;
+    border-radius: 10px;
+}

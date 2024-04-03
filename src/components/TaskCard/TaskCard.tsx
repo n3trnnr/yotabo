@@ -27,7 +27,7 @@ const TaskCard: React.FC = () => {
                             <span>0</span>
                         </div>
                         <span className={styles['burger-menu']}>
-                            <Button styleName={'none'}>
+                            <Button colorStyle={'none'}>
                                 <SvgIcons iconName={'burgerMenu'} />
                             </Button>
                         </span>

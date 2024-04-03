@@ -16,12 +16,14 @@ import InProgress from '../../../assets/in-progress.svg?react'
 import Deadline from '../../../assets/deadline.svg?react'
 import Upload from '../../../assets/upload-file.svg?react'
 import UploadCover from '../../../assets/upload-cover.svg?react'
+import Download from '../../../assets/download-file.svg?react'
 import Filter from '../../../assets/filter.svg?react'
 import AddNewElement from '../../../assets/add-new-element.svg?react'
 import BoardView from '../../../assets/board-view.svg?react'
 import ListView from '../../../assets/list-view.svg?react'
 import Description from '../../../assets/description.svg?react'
 import Favourites from '../../../assets/favourites-false.svg?react'
+import Cross from '../../../assets/close-cross.svg?react'
 
 const iconsList = {
     logo: Logo,
@@ -41,12 +43,14 @@ const iconsList = {
     deadline: Deadline,
     uploadFile: Upload,
     uploadCover: UploadCover,
+    download: Download,
     filter: Filter,
     addNewElement: AddNewElement,
     boardView: BoardView,
     listView: ListView,
     description: Description,
-    favourites: Favourites
+    favourites: Favourites,
+    cross: Cross
 }
 
 interface ISvgIcons {
@@ -57,7 +61,6 @@ interface ISvgIcons {
 const SvgIcons: React.FC<ISvgIcons> = ({ iconName, styleName }) => {
 
     const IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>> = iconsList[iconName]
-    // as unknown as React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
     return (
         <IconComponent className={styleName} />

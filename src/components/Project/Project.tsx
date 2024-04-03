@@ -21,12 +21,12 @@ const Project: React.FC<IProject> = ({ title, description, creationDate }) => {
                 </div>
                 <div className={styles['creation-date']}>{creationDate}</div>
                 <span className={styles['burger-menu']}>
-                    <Button styleName={'none'}>
+                    <Button colorStyle={'none'}>
                         <SvgIcons iconName={'burgerMenu'} />
                     </Button>
                 </span>
                 <span className={styles.favourites}>
-                    <Button styleName={'none'} >
+                    <Button colorStyle={'none'} >
                         <SvgIcons iconName={'favourites'} />
                     </Button>
                 </span>

@@ -26,7 +26,7 @@ header.header {
         border: none;
         outline: 0;
         margin-left: 10px;
-        @extend %font-technical-title;
+        @extend %font-technical-16px-medium;
     }
 
     .search-button {

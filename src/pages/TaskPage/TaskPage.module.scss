@@ -1,5 +1,9 @@
 @use '../../styles/variables';
 
+.upload-file-icon {
+    @extend %icon-color-white;
+}
+
 .task-page {
     width: 100%;
     height: calc(100% - 105px);
@@ -58,7 +62,6 @@
     width: 778px;
     // height: 190px;
     margin-left: 30px;
-    // height: ;
 }
 
 .text-content {
@@ -79,86 +82,8 @@
     }
 }
 
-.info-bar {
-    display: flex;
-    justify-content: space-between;
-    @extend %font-title-18px-medium;
-
-    .priority-container {
-        .priority-value-wrapper {
-            display: flex;
-            margin-top: 10px;
-            @extend %font-content-16px-regular;
-            color: variables.$color-light-grey;
-        }
-    }
-
-    .creation-date-container {
-        .creation-date-value {
-            margin-top: 10px;
-            @extend %font-content-16px-regular;
-            color: variables.$color-light-grey;
-        }
-    }
-
-    .deadline-container {
-        .deadline-value {
-            margin-top: 10px;
-            @extend %font-content-16px-regular;
-            color: variables.$color-light-grey;
-        }
-
-    }
-
-    .files-container {
-        .files-wrapper {
-            display: flex;
-            margin-top: 10px;
-            @extend %font-content-16px-regular;
-            color: variables.$color-light-grey;
-
-            .attach-files-icon {
-                margin-right: 10px;
-            }
-
-            .buttons-wrapper {
-                display: flex;
-                margin-left: 30px;
-                transition: variables.$transition-time;
-
-                .upload-file-button {
-                    &:hover {
-                        @extend %icon-color-black;
-                    }
-                }
-
-                .delete-button {
-                    width: 17px;
-                    height: 17px;
-
-                    &:hover {
-                        @extend %icon-color-black;
-                    }
-                }
-            }
-        }
-    }
-}
-
 .burger-menu {
     position: absolute;
     top: 20px;
     right: 20px;
-}
-
-.priority-high {
-    @extend %priority-high;
-}
-
-.priority-med {
-    @extend %priority-med;
-}
-
-.priority-low {
-    @extend %priority-low;
 }

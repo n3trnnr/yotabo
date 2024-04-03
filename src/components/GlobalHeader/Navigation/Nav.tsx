@@ -8,17 +8,17 @@ const Nav: React.FC = () => {
         <nav className={styles["header-nav"]}>
             <ul className={styles["header-nav-items-list"]}>
                 <li>
-                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
+                    <Button buttonShape={'square'} colorStyle={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'lightTheme'} />
                     </Button>
                 </li>
                 <li>
-                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
+                    <Button buttonShape={'square'} colorStyle={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'notification'} />
                     </Button>
                 </li>
                 <li>
-                    <Button buttonShape={'square'} styleName={'light-grey'} margin={'10px'}>
+                    <Button buttonShape={'square'} colorStyle={'light-grey'} margin={'10px'}>
                         <SvgIcons iconName={'user'} />
                     </Button>
                 </li>

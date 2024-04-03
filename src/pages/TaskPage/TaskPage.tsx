@@ -3,11 +3,17 @@ import MainComponentHeader from '../../components/MainComponentHeader/MainCompon
 import styles from './TaskPage.module.scss'
 import Button from '../../components/UI/Button/Button';
 import SvgIcons from '../../components/UI/Svg/SvgIcons';
+import InfoBar from './InfoBar/InfoBar';
 
 const TaskPage: React.FC = () => {
     return (
         <>
-            <MainComponentHeader type="none" />
+            <MainComponentHeader type={"none"}>
+                <Button buttonShape={"rectangle"} colorStyle={"blue"} title={"Upload file"} >
+                    <SvgIcons iconName={"uploadFile"} styleName={styles["upload-file-icon"]} />
+                </Button>
+            </MainComponentHeader>
+
             <div className={styles["task-page"]}>
                 <div className={styles["task-container"]}>
                     <div className={styles["task-wrapper"]}>
@@ -33,67 +39,10 @@ const TaskPage: React.FC = () => {
                                     </p>
                                 </div>
                             </div>
-
-                            <div className={styles["info-bar"]}>
-                                <div className={styles["priority-container"]}>
-                                    <div className={styles["priority-title"]}>Priority</div>
-                                    <div className={styles["priority-value-wrapper"]}>
-                                        <div className={styles["priority-high"]}></div>
-                                        <span>High</span>
-                                    </div>
-                                </div>
-                                <div className={styles["creation-date-container"]}>
-                                    <div className={styles["creation-date-title"]}>Сreation date</div>
-                                    <div className={styles["creation-date-value"]}>16.04.2024</div>
-
-                                </div>
-                                <div className={styles["deadline-container"]}>
-                                    <div className={styles["deadline-title"]}>Deadline</div>
-                                    <div className={styles["deadline-value"]}>29.05.2024</div>
-                                </div>
-                                <div className={styles["files-container"]}>
-                                    <div className={styles["files-title"]}>Files</div>
-                                    <div className={styles["files-wrapper"]}>
-                                        <div className={styles["attach-files-icon"]}><SvgIcons iconName="attachFile" /></div>
-                                        <span>file-name.pdf</span>
-                                        <div className={styles["buttons-wrapper"]}>
-                                            <Button styleName={'none'}>
-                                                <SvgIcons iconName="uploadFile" styleName={styles["upload-file-button"]} />
-                                            </Button>
-                                            <Button styleName={'none'} margin={'20px'}>
-                                                <SvgIcons iconName="trash" styleName={styles["delete-button"]} />
-                                            </Button>
-                                        </div>
-                                    </div>
-                                    <div className={styles["files-wrapper"]}>
-                                        <div className={styles["attach-files-icon"]}><SvgIcons iconName="attachFile" /></div>
-                                        <span>file-name.pdf</span>
-                                        <div className={styles["buttons-wrapper"]}>
-                                            <Button styleName={'none'}>
-                                                <SvgIcons iconName="uploadFile" styleName={styles["upload-file-button"]} />
-                                            </Button>
-                                            <Button styleName={'none'} margin={'20px'}>
-                                                <SvgIcons iconName="trash" styleName={styles["delete-button"]} />
-                                            </Button>
-                                        </div>
-                                    </div>
-                                    <div className={styles["files-wrapper"]}>
-                                        <div className={styles["attach-files-icon"]}><SvgIcons iconName="attachFile" /></div>
-                                        <span>file-name.pdf</span>
-                                        <div className={styles["buttons-wrapper"]}>
-                                            <Button styleName={'none'}>
-                                                <SvgIcons iconName="uploadFile" styleName={styles["upload-file-button"]} />
-                                            </Button>
-                                            <Button styleName={'none'} margin={'20px'}>
-                                                <SvgIcons iconName="trash" styleName={styles["delete-button"]} />
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <InfoBar />
                         </div>
                         <span className={styles['burger-menu']}>
-                            <Button styleName={'none'}>
+                            <Button colorStyle={'none'}>
                                 <SvgIcons iconName={'burgerMenu'} />
                             </Button>
                         </span>
