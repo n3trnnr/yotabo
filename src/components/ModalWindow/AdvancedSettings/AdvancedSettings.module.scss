@@ -1,21 +1,190 @@
 @use '../../../styles/variables';
 
+%upload-icon {
+    @extend %icon-color-grey;
+    margin-right: 10px;
+    width: 17px;
+    height: 17px;
+}
+
+%icon-wrapper {
+    display: flex;
+    align-items: center;
+    color: variables.$color-light-grey;
+    cursor: pointer;
+
+    &:hover {
+        @extend %icon-color-black;
+        color: variables.$color-dark-grey;
+    }
+}
+
 .advanced-settings-wrapper {
     display: flex;
     margin-bottom: 20px;
 }
 
-.info-wrapper {
+.info-container {
     width: 242px;
     height: 156px;
-    border: 1px solid variables.$color-dark-grey;
+    border: 1px solid variables.$color-light-grey;
     border-radius: 10px;
     margin-right: 30px;
+
+    .info-wrapper {
+        @extend %font-technical-16px-medium;
+        color: variables.$color-dark-grey;
+        padding: 20px 25px;
+        transition: all 100ms;
+    }
 }
 
-.files-wrapper {
+.priority-wrapper {
+    height: 45px;
+    margin-bottom: 20px;
+
+    .priority-title {
+        margin-bottom: 10px;
+    }
+
+    .radios-wrapper {
+        display: flex;
+        @extend %font-content-14px-medium;
+        color: variables.$color-light-grey;
+
+        .form-radio-low {
+            @extend %element-position-center;
+        }
+
+        .radio {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            accent-color: variables.$color-dark-grey;
+            cursor: pointer;
+
+            .input-radio+span {
+                padding-left: 5px;
+            }
+
+            &:hover {
+                color: variables.$color-dark-grey;
+                accent-color: variables.$color-dark-grey;
+            }
+        }
+
+        .input-radio {
+            width: 15px;
+            height: 15px;
+
+            &:focus {
+                outline-offset: 0;
+            }
+
+            &:checked~span {
+                color: variables.$color-dark-grey;
+            }
+        }
+    }
+}
+
+.deadline-wrapper {
+    // width: 185px;
+    height: 45px;
+
+    .deadline-title {
+        margin-bottom: 10px;
+    }
+
+    .deadline-input {
+        border: none;
+        font-family: 'inter', 'sans-serif';
+        @extend %font-content-14px-medium;
+        color: variables.$color-light-grey;
+        // text-transform: uppercase;
+
+        &:focus-within::-webkit-datetime-edit {
+            color: black;
+        }
+
+        &::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.4;
+        }
+
+        &::-webkit-calendar-picker-indicator:hover {
+            opacity: 0.7
+        }
+    }
+}
+
+
+
+.files-container {
     width: 242px;
-    height: 156px;
-    border: 1px solid variables.$color-dark-grey;
+    // height: 156px;
+    border: 1px solid variables.$color-light-grey;
     border-radius: 10px;
+
+    .files-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 50px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+}
+
+.cover-wrapper {
+    overflow: hidden;
+
+    .upload-cover-wrapper {
+        @extend %icon-wrapper;
+        margin-bottom: 10px;
+    }
+
+    .upload-cover-icon {
+        @extend %upload-icon;
+    }
+
+    .cover-value {
+        width: inherit;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        margin-bottom: 20px;
+        @extend %font-content-14px-medium;
+        color: variables.$color-light-grey;
+    }
+}
+
+
+
+.file-wrapper {
+    overflow: hidden;
+
+    .upload-file-wrapper {
+        @extend %icon-wrapper;
+        margin-bottom: 10px;
+    }
+
+    .upload-file-icon {
+        @extend %upload-icon;
+    }
+
+    .file-value {
+        width: inherit;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        margin-bottom: 10px;
+        @extend %font-content-14px-medium;
+        color: variables.$color-light-grey;
+    }
 }
