@@ -1,7 +1,7 @@
 @use '../../../styles/variables';
 
 %upload-icon {
-    @extend %icon-color-grey;
+    @extend %icon-color-black;
     margin-right: 10px;
     width: 17px;
     height: 17px;
@@ -10,12 +10,12 @@
 %icon-wrapper {
     display: flex;
     align-items: center;
-    color: variables.$color-light-grey;
+    color: variables.$color-dark-grey;
     cursor: pointer;
 
     &:hover {
-        @extend %icon-color-black;
-        color: variables.$color-dark-grey;
+        @extend %icon-color-grey;
+        color: variables.$color-light-grey;
     }
 }
 
@@ -76,6 +76,7 @@
         .input-radio {
             width: 15px;
             height: 15px;
+            cursor: pointer;
 
             &:focus {
                 outline-offset: 0;
@@ -83,6 +84,11 @@
 
             &:checked~span {
                 color: variables.$color-dark-grey;
+            }
+
+            &:hover {
+                border-color: variables.$color-dark-grey;
+                background: red;
             }
         }
     }
@@ -101,6 +107,7 @@
         font-family: 'inter', 'sans-serif';
         @extend %font-content-14px-medium;
         color: variables.$color-light-grey;
+        width: 100%;
         // text-transform: uppercase;
 
         &:focus-within::-webkit-datetime-edit {
@@ -118,8 +125,6 @@
     }
 }
 
-
-
 .files-container {
     width: 242px;
     // height: 156px;
@@ -129,7 +134,7 @@
     .files-wrapper {
         display: flex;
         flex-direction: column;
-        padding: 20px 50px;
+        padding: 20px 20px 10px 20px;
     }
 
     input[type="file"] {
@@ -142,7 +147,6 @@
 
     .upload-cover-wrapper {
         @extend %icon-wrapper;
-        margin-bottom: 10px;
     }
 
     .upload-cover-icon {
@@ -162,29 +166,42 @@
     }
 }
 
-
-
 .file-wrapper {
     overflow: hidden;
 
     .upload-file-wrapper {
         @extend %icon-wrapper;
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
     }
 
     .upload-file-icon {
         @extend %upload-icon;
     }
+}
 
-    .file-value {
-        width: inherit;
+.file-item {
+    display: flex;
+    align-items: center;
+}
 
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+.file-value {
+    width: inherit;
 
-        margin-bottom: 10px;
-        @extend %font-content-14px-medium;
-        color: variables.$color-light-grey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    margin: 5px 5px 5px 0;
+    @extend %font-content-14px-medium;
+    color: variables.$color-light-grey;
+}
+
+.delete-icon-button {
+    width: 15px;
+    height: 15px;
+    @extend %icon-color-grey;
+
+    &:hover {
+        @extend %icon-color-black;
     }
 }
