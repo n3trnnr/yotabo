@@ -10,21 +10,15 @@ import AdvancedSettings from '../../components/ModalWindow/AdvancedSettings/Adva
 const ProjectPage: React.FC = () => {
 
     const [showModal, setShowModal] = useState<boolean>(false)
-    const handleShowModal = () => {
-        if (showModal) {
-            setShowModal(false)
-        } else {
-            setShowModal(true)
-        }
+    const handleShowModal = (isShown: boolean) => {
+        setShowModal(isShown)
     }
 
     return (
         <>
             {showModal &&
                 <div className={styles["modal-window"]}>
-                    <ModalWindow title={"Create task"} handleShowModal={handleShowModal}>
-                        <AdvancedSettings />
-                    </ModalWindow>
+                    <ModalWindow type={"advanced"} modalWindowTitle={"Create task"} handleShowModal={handleShowModal} />
                 </div>
             }
 
@@ -38,7 +32,7 @@ const ProjectPage: React.FC = () => {
                 <Button buttonShape={'rectangle'} colorStyle={'light-grey'} title={'Filter'} margin={'10px'}>
                     <SvgIcons iconName={'filter'} />
                 </Button>
-                <Button handleClick={handleShowModal} buttonShape={'rectangle'} colorStyle={'blue'} title={'New task'} margin={'10px'}>
+                <Button handleClick={() => handleShowModal(true)} buttonShape={'rectangle'} colorStyle={'blue'} title={'New task'} margin={'10px'}>
                     <SvgIcons iconName={'addNewElement'} />
                 </Button>
             </MainComponentHeader>

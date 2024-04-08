@@ -1,134 +1,138 @@
 import React, { useState } from "react";
 import styles from './AdvancedSettings.module.scss'
 import SvgIcons from "../../UI/Svg/SvgIcons";
-import { nanoid } from "nanoid";
 import Button from "../../UI/Button/Button";
 
-//Доделать hover окружности radio!!!
+interface IAdvancedSettings {
+    files: []
+    handleUploadFile: (fileName: string) => void;
+    handleDeleteFile: (id: string) => void;
+    cover: string;
+    handleUploadDeleteCover: (coverName: string) => void;
+    handeSetPriority: (priority: string) => void;
+    handleSetDeadline: (date: string) => void;
+}
 
-const AdvancedSettings: React.FC = () => {
-
-    const id = nanoid()
-
-    const [cover, setCover] = useState<string | undefined>(undefined)
-    const [files, setFiles] = useState<string[]>([])
-
-    const radio = (event: any) => {
-        console.log(event.target.defaultValue);
-    }
-
-    const deadline = (event: any) => {
-        console.log(event.target.value);
-    }
+const AdvancedSettings: React.FC<IAdvancedSettings> = ({
+    files,
+    handleUploadFile,
+    handleDeleteFile,
+    cover,
+    handleUploadDeleteCover,
+    handeSetPriority,
+    handleSetDeadline
+}) => {
 
     return (
-        <div className={styles["advanced-settings-wrapper"]}>
-            <div className={styles["info-container"]}>
-                <div className={styles["info-wrapper"]}>
-
+        <div className={styles["advanced-settings-container"]}>
+            <div className={styles["info-block-container"]}>
+                <div className={styles["info-block-wrapper"]}>
                     <div className={styles["priority-wrapper"]}>
-                        <div className={styles["priority-title"]}>Priority</div>
-                        <div className={styles["radios-wrapper"]}>
+                        <div className={styles["priority-title"]}>
+                            Priority
+                        </div>
+                        <div className={styles["radio-group-wrapper"]}>
                             <label className={styles["radio"]}>
                                 <input
+                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
                                     name="priority-radio"
                                     defaultValue={"low"}
-                                    onClick={(event) => radio(event)}
                                 />
-                                <span className={styles["radio-description"]}>Low</span>
+                                <span className={styles["radio-description"]}>
+                                    Low
+                                </span>
                             </label>
-
                             <label className={styles["radio"]}>
                                 <input
+                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
                                     name="priority-radio"
                                     defaultValue={"med"}
-                                    onClick={(event) => radio(event)} />
-                                <span className={styles["radio-description"]}>Med</span>
+                                />
+                                <span className={styles["radio-description"]}>
+                                    Med
+                                </span>
                             </label>
-
                             <label className={styles["radio"]}>
                                 <input
+                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
                                     name="priority-radio"
                                     defaultValue={"high"}
-                                    onClick={(event) => radio(event)} />
-                                <span className={styles["radio-description"]}>High</span>
+                                />
+                                <span className={styles["radio-description"]}>
+                                    High
+                                </span>
                             </label>
                         </div>
                     </div>
-
                     <div className={styles["deadline-wrapper"]}>
-                        <div className={styles["deadline-title"]}>Deadline</div>
+                        <div className={styles["deadline-title"]}>
+                            Deadline
+                        </div>
                         <div >
                             <input
+                                onChange={(event) => handleSetDeadline(event.target.value)}
                                 className={styles["deadline-input"]}
-                                onClick={(event) => deadline(event)} type="date" name="deadline"
+                                type="date"
+                                name="deadline"
                             />
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <div className={styles["files-container"]}>
-                <div className={styles["files-wrapper"]}>
-
-                    <div className={styles["cover-wrapper"]}>
-                        <label className={styles["upload-cover-wrapper"]}>
-                            <SvgIcons
-                                iconName={"uploadFile"}
-                                styleName={styles["upload-cover-icon"]}
-                            />
+            <div className={styles["files-block-container"]}>
+                <div className={styles["files-block-wrapper"]}>
+                    <div className={styles["upload-cover-wrapper"]}>
+                        <label className={styles["label-cover"]}>
+                            <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                             Upload cover
-                            <input type="file" onChange={(event) => setCover(event.target.value)} />
+                            <input type="file"
+                                onChange={(event) => {
+                                    handleUploadDeleteCover(event.target.value)
+                                    event.target.value = ''
+                                }}
+                            />
                         </label>
-                        <ul className={styles["cover-value"]}>
+                        <ul>
                             {cover ?
-                                <li className={styles["file-item"]}>
-                                    <span className={styles["file-value"]}>
+                                <li className={styles["uploaded-file"]}>
+                                    <span className={styles["uploaded-file-name"]}>
                                         {cover}
                                     </span>
-                                    <Button colorStyle={"none"}>
-                                        <SvgIcons
-                                            iconName={"trash"}
-                                            styleName={styles["delete-icon-button"]}
-                                        />
+                                    <Button handleClick={() => handleUploadDeleteCover('')} colorStyle={"none"}>
+                                        <SvgIcons iconName={"trash"} styleName={styles["delete-icon"]} />
                                     </Button>
-                                </li> :
-                                '-'
+                                </li> : <li className={styles["uploaded-file-name"]}>choose file</li>
                             }
                         </ul>
                     </div>
-
-                    <div className={styles["file-wrapper"]}>
-                        <label className={styles["upload-file-wrapper"]}>
-                            <SvgIcons
-                                iconName={"uploadFile"}
-                                styleName={styles["upload-file-icon"]}
-                            />
+                    <div className={styles["upload-file-wrapper"]}>
+                        <label className={styles["label-file"]}>
+                            <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                             Upload file
-                            <input type="file" onChange={(event) => setFiles([...files, event.target.value])} />
+                            <input type="file"
+                                onChange={(event) => {
+                                    handleUploadFile(event.target.value)
+                                    event.target.value = ''
+                                }}
+                            />
                         </label>
                         <ul>
-                            {files.length ? files.map((file: string) => (
-                                <li className={styles["file-item"]}>
-                                    <span className={styles["file-value"]}>
-                                        {file}
+                            {files.length ? files.map((file: any) => (
+                                <li key={file.id} className={styles["uploaded-file"]}>
+                                    <span className={styles["uploaded-file-name"]}>
+                                        {file.fileName}
                                     </span>
-                                    <Button colorStyle={"none"}>
-                                        <SvgIcons
-                                            iconName={"trash"}
-                                            styleName={styles["delete-icon-button"]}
-                                        />
+                                    <Button colorStyle={"none"} handleClick={() => handleDeleteFile(file.id)}>
+                                        <SvgIcons iconName={"trash"} styleName={styles["delete-icon"]} />
                                     </Button>
                                 </li>
-                            ))
-                                : <li className={styles["file-value"]}>-</li>
+                            )) : <li className={styles["uploaded-file-name"]}>choose file</li>
                             }
                         </ul>
                     </div>

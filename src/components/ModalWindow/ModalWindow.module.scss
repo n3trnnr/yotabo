@@ -2,12 +2,9 @@
 
 .modal-window-container {
     width: 574px;
-    // height: 397px;s
     background: variables.$color-white;
     border-radius: variables.$modal-window-radius;
     box-shadow: 0 4px 16px 2px rgba(0, 26, 52, .16);
-    // border: 1px solid white;
-    transform: translateY(2px);
     position: relative;
     z-index: 101;
 
@@ -85,6 +82,8 @@
         background: none;
         color: variables.$color-dark-grey;
         @extend %font-title-18px-medium;
+        cursor: pointer;
+        transition: variables.$transition-time;
 
         &:hover {
             background: variables.$color-dark-grey;

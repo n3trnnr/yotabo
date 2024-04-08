@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainComponentHeader from '../../components/MainComponentHeader/MainComponentHeader'
 import Project from '../../components/Project/Project';
@@ -14,19 +14,15 @@ const ProjectsPage: React.FC = () => {
     const navigate = useNavigate()
 
     const [showModal, setShowModal] = useState<boolean>(false)
-    const handleShowModal = () => {
-        if (showModal) {
-            setShowModal(false)
-        } else {
-            setShowModal(true)
-        }
+    const handleShowModal = (isShown: boolean) => {
+        setShowModal(isShown)
     }
 
     return (
         <>
             {showModal &&
                 <div className={styles["modal-window"]}>
-                    <ModalWindow title={"Create project"} handleShowModal={handleShowModal} />
+                    <ModalWindow type={"simple"} modalWindowTitle={"Create project"} handleShowModal={handleShowModal} />
                 </div>
             }
 
@@ -40,7 +36,7 @@ const ProjectsPage: React.FC = () => {
                 <Button buttonShape={'rectangle'} colorStyle={'light-grey'} title={'Filter'} margin={'10px'}>
                     <SvgIcons iconName={'filter'} />
                 </Button>
-                <Button handleClick={handleShowModal} buttonShape={'rectangle'} colorStyle={'blue'} title={'New project'} margin={'10px'}>
+                <Button handleClick={() => handleShowModal(true)} buttonShape={'rectangle'} colorStyle={'blue'} title={'New project'} margin={'10px'}>
                     <SvgIcons iconName={'addNewElement'} />
                 </Button>
             </MainComponentHeader>
