@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import styles from './ModalWindow.module.scss'
 import Button from "../UI/Button/Button";
 import SvgIcons from "../UI/Svg/SvgIcons";
@@ -20,15 +20,20 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     const [cover, setCover] = useState('')
     const [files, setFiles] = useState<any>([])
 
+    const id = nanoid()
+
     const newProject = {
+        id: id,
         title: title,
         description: description,
         progress: 0,
         creationDate: new Date().toLocaleDateString(),
-        isFavorites: false
+        isFavorites: false,
+        isDeleted: false
     }
 
     const newTask = {
+        id: id,
         title: title,
         description: description,
         priority: priority,
@@ -39,9 +44,9 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     }
 
     const handleUploadFile = (fileName: string) => {
-        const id = nanoid()
+        const fileId = nanoid()
         const newFile = {
-            id: id,
+            id: fileId,
             fileName: fileName
         }
         setFiles([...files, newFile])

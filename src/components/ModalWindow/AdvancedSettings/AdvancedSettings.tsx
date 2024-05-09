@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './AdvancedSettings.module.scss'
 import SvgIcons from "../../UI/Svg/SvgIcons";
 import Button from "../../UI/Button/Button";

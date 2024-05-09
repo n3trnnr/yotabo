@@ -5,7 +5,6 @@ import Boards from '../../components/Boards/Boards';
 import Button from '../../components/UI/Button/Button';
 import SvgIcons from '../../components/UI/Svg/SvgIcons';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
-import AdvancedSettings from '../../components/ModalWindow/AdvancedSettings/AdvancedSettings';
 
 const ProjectPage: React.FC = () => {
 

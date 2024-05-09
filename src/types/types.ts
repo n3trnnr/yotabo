@@ -2,7 +2,7 @@ interface IProject {
     id: number,
     title: string,
     description: string,
-    isFavourite: boolean,
+    isFavorites: boolean,
     progress: number,
     creationDate: Date
     isDeleted: boolean

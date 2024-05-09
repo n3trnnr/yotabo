@@ -11,6 +11,12 @@ const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {
 
     return (
         <header className={styles['header']}>
+            <div className={styles["logo-container"]}>
+                <a className={styles["logo-wrapper"]}>
+                    <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
+                    <h1>Yotabo</h1>
+                </a>
+            </div>
             {
                 children ?
                     <div>
