@@ -45,15 +45,18 @@ header.header {
 
     .input-search {
         height: 45px;
-        width: 100%;
+        width: calc(100% - 90px);
+        text-align: center;
         background: none;
+        color: variables.$color-light-grey;
         border: none;
         outline: 0;
-        margin-left: 10px;
+        // margin-right: 45px;
         @extend %font-technical-16px-medium;
     }
 
-    .search-button {
+    .search-button,
+    .close-button {
         width: 45px;
         height: 45px;
         @extend %square-button-size;

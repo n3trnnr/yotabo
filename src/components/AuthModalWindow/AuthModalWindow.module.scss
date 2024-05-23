@@ -1,5 +1,10 @@
 @use '../../styles/variables';
 
+
+.logo-icon {
+    margin-bottom: 30px;
+}
+
 .modal-window-container {
     width: 382px;
     background: variables.$color-white;
@@ -25,6 +30,7 @@
     padding: 30px;
 
     .title {
+        text-align: center;
         color: variables.$color-dark-grey;
         @extend %font-title-18px-medium;
         margin-bottom: 30px;
@@ -46,7 +52,7 @@
     height: 45px;
     margin-top: 20px;
     border-radius: 10px;
-    margin-right: 30px;
+    // margin-right: 30px;
     background: variables.$color-blue;
     color: variables.$color-white;
     @extend %font-title-18px-medium;

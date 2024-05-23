@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DashboardPage from '../pages/DashboardPage';
 import ProjectsPage from '../pages/ProjectsPage/ProjectsPage';
 import TrashPage from '../pages/TrashPage';
@@ -14,11 +14,8 @@ import SignInPage from '../pages/SignInPage/SignInPage';
 import Auth from '../hoc/Auth';
 
 const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/' element={''}>
-        <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/signin' element={<SignInPage />} />
-
-        <Route path='/home' element={<Auth><Layout /></Auth>} errorElement={<ErrorPage />}>
+    <>
+        <Route path='/' element={<Auth><Layout /></Auth>} errorElement={<ErrorPage />}>
             <Route path='dashboard' element={<DashboardPage />} />
             <Route path='projects' element={<ProjectsPage />} />
             <Route path='projects/:id' element={<ProjectPage />} />
@@ -28,7 +25,9 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path='projects/boards/task' element={<TaskPage />} />
             <Route path='*' element={<NotFound />} />
         </Route>
-    </Route>
+        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/signin' element={<SignInPage />} />
+    </>
 ))
 
 const Router: React.FC = () => {

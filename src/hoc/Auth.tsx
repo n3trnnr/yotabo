@@ -7,7 +7,7 @@ interface IAuth {
 
 const Auth: React.FC<IAuth> = ({ children }) => {
 
-    // let data = false;
+    // const data = false;
     // if (!data) {
     //     return <Navigate to={'/signup'} />
     // }

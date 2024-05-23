@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './GlobalHeader.module.scss'
 import Nav from "./Navigation/Nav";
 import SvgIcons from "../UI/Svg/SvgIcons";
+import { Link, useLocation } from "react-router-dom";
 
 interface IGlobalHeader {
     children?: React.ReactNode,
@@ -9,13 +10,22 @@ interface IGlobalHeader {
 
 const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {
 
+    const [text, setText] = useState('')
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+    }
+
+    const location = useLocation()
+    console.log('location', location);
+
     return (
         <header className={styles['header']}>
             <div className={styles["logo-container"]}>
-                <a className={styles["logo-wrapper"]}>
+                <Link to={'/'} className={styles["logo-wrapper"]}>
                     <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
                     <h1>Yotabo</h1>
-                </a>
+                </Link>
             </div>
             {
                 children ?
@@ -23,11 +33,14 @@ const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {
                         {children}
                     </div>
                     :
-                    <form className={styles["search-form"]} action="">
+                    <form onSubmit={(event) => handleSubmit(event)} className={styles["search-form"]}>
                         <button className={styles["search-button"]}>
                             <SvgIcons iconName={"search"} />
                         </button>
-                        <input className={styles["input-search"]} type="text" placeholder="Search" />
+                        <input onChange={(event) => setText(event.target.value)} className={styles["input-search"]} type="text" placeholder="Search" value={text} />
+                        <button onClick={() => setText('')} className={styles["close-button"]}>
+                            <SvgIcons iconName={"cross"} />
+                        </button>
                     </form>
             }
             <Nav />
