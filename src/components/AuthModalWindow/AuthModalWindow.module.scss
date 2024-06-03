@@ -36,14 +36,25 @@
         margin-bottom: 30px;
     }
 
+    .label {
+        margin-bottom: 20px;
+    }
+
     .input-auth {
         width: 322px;
         height: 45px;
         border-radius: 10px;
         border: 1px solid variables.$color-light-grey;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
         padding: 15px;
         @extend %font-content-16px-regular;
+    }
+
+    .error-message {
+        height: 20px;
+        margin-top: 5px;
+        font-size: 14px;
+        color: variables.$color-light-red;
     }
 }
 
@@ -59,6 +70,14 @@
 
     &:hover {
         background: rgba(variables.$color-blue, .8);
+    }
+}
+
+.button-submit-disabled {
+    background: grey;
+
+    &:hover {
+        background: grey;
     }
 }
 

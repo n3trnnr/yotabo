@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form'
 import styles from './AuthModalWindow.module.scss'
 import SvgIcons from '../UI/Svg/SvgIcons';
 import { Link } from 'react-router-dom';
@@ -7,65 +8,107 @@ interface IAuthModalWindow {
     type: 'signup' | 'signin'
 }
 
+interface IInputs {
+    username: string,
+    password: string,
+    email: string
+}
+
 const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
 
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
+    const { register,
+        handleSubmit,
+        reset,
+        formState: { errors, isValid }
+    } = useForm<IInputs>({
+        mode: 'onChange'
+    })
 
-    const signUp = {
-        login: login,
-        password: password,
-        email: email
-    }
-
-    const signIn = {
-        login: login,
-        password: password
-    }
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+    const submit: SubmitHandler<IInputs> = (data) => {
+        console.log('data', data);
+        reset()
     }
 
     return (
         <>
             <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
             <div className={styles["modal-window-container"]}>
-                {
-                    type === 'signup' ?
-                        <>
-                            <form className={styles["form-wrapper"]}>
-                                <div className={styles.title}>Sign Up</div>
-                                <input className={styles["input-auth"]} type="text" name="login" placeholder='Login' required />
-                                <input className={styles["input-auth"]} type="password" name="password" placeholder='Password' required />
-                                <input className={styles["input-auth"]} type="email" name="email" placeholder='Email' required />
-                                <button className={styles["button-submit"]}>Sign Up</button>
-                            </form>
+                {type === 'signup' ?
+                    <>
+                        <form
+                            onSubmit={handleSubmit(submit)}
+                            className={styles["form-wrapper"]}
+                        >
+                            <div className={styles.title}>Sign Up</div>
+                            <label className={styles.label}>
+                                <input
+                                    {...register('username', { required: true, pattern: /^[A-Za-z](.+[A-Za-z-_\d])/i })}
+                                    className={styles["input-auth"]} type="text" placeholder='Login'
+                                />
+                                {errors.username && <div className={styles['error-message']}>incorrect login</div>}
+                            </label>
+                            <label className={styles.label}>
+                                <input
+                                    {...register('password', { required: true, pattern: /^[A-Za-z](.+[A-Za-z!\d])/i })}
+                                    className={styles["input-auth"]} type="password" placeholder='Password'
+                                />
+                                {errors.password && <div className={styles['error-message']}>incorrect password</div>}
+                            </label>
+                            <label className={styles.label}>
+                                <input
+                                    {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
+                                    className={styles["input-auth"]} type="email" placeholder='Email'
+                                />
+                                {errors.email && <div className={styles['error-message']}>incorrect email</div>}
+                            </label>
+                            <button
+                                disabled={!isValid}
+                                className={isValid ? styles["button-submit"] : `${styles['button-submit-disabled']} ${styles['button-submit']}`}
+                            >
+                                Sign Up
+                            </button>
+                        </form>
 
-                            <div className={styles["redirect-wrapper"]}>
-                                <span>
-                                    Already have an account?
-                                    <Link className={styles["redirect-link"]} to={"/signin"}> Sign In</Link>
-                                </span>
-                            </div>
-                        </> :
-                        <>
-                            <form className={styles["form-wrapper"]}>
-                                <div className={styles.title}>Sign In</div>
-                                <input className={styles["input-auth"]} type="text" name="login" placeholder='Login' required />
-                                <input className={styles["input-auth"]} type="password" name="password" placeholder='Password' required />
-                                {/* <input className={styles["input-auth"]} type="email" name="email" placeholder='Email' required /> */}
-                                <button className={styles["button-submit"]}>Sign In</button>
-                            </form>
+                        <div className={styles["redirect-wrapper"]}>
+                            <span>
+                                Already have an account?
+                                <Link className={styles["redirect-link"]} to={"/signin"}> Sign In</Link>
+                            </span>
+                        </div>
+                    </> :
+                    <>
+                        <form
+                            onSubmit={handleSubmit(submit)}
+                            className={styles["form-wrapper"]}
+                        >
+                            <div className={styles.title}>Sign In</div>
+                            <label className={styles.label}>
+                                <input
+                                    {...register('username', { required: true, pattern: /^[A-Za-z](.+[A-Za-z-_\d])/i })}
+                                    className={styles["input-auth"]} type="text" placeholder='Login'
+                                />
+                                {errors.username && <div className={styles['error-message']}>incorrect login</div>}
+                            </label>
+                            <label className={styles.label}>
+                                <input
+                                    {...register('password', { required: true, pattern: /^[A-Za-z](.+[A-Za-z!\d])/i })}
+                                    className={styles["input-auth"]} type="password" placeholder='Password'
+                                />
+                                {errors.password && <div className={styles['error-message']}>incorrect password</div>}
+                            </label>
+                            <button className={isValid ? styles["button-submit"] : `${styles['button-submit-disabled']} ${styles['button-submit']}`}
+                            >
+                                Sign In
+                            </button>
+                        </form>
 
-                            <div className={styles["redirect-wrapper"]}>
-                                <span>
-                                    Don’t have an account?
-                                    <Link className={styles["redirect-link"]} to={"/signup"}> Create new one</Link>
-                                </span>
-                            </div>
-                        </>
+                        <div className={styles["redirect-wrapper"]}>
+                            <span>
+                                Don’t have an account?
+                                <Link className={styles["redirect-link"]} to={"/signup"}> Create new one</Link>
+                            </span>
+                        </div>
+                    </>
                 }
             </div>
         </>
