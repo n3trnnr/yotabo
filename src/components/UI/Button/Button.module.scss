@@ -5,6 +5,7 @@ button {
     @extend %element-position-center;
     transition: variables.$transition-time;
     cursor: pointer;
+    color: inherit;
 }
 
 .icon-wrapper {

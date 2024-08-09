@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import styles from './ModalWindow.module.scss'
 import Button from "../UI/Button/Button";
 import SvgIcons from "../UI/Svg/SvgIcons";
@@ -20,15 +20,20 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     const [cover, setCover] = useState('')
     const [files, setFiles] = useState<any>([])
 
+    const id = nanoid()
+
     const newProject = {
+        id: id,
         title: title,
         description: description,
         progress: 0,
         creationDate: new Date().toLocaleDateString(),
-        isFavorites: false
+        isFavorites: false,
+        isDeleted: false
     }
 
     const newTask = {
+        id: id,
         title: title,
         description: description,
         priority: priority,
@@ -39,9 +44,9 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     }
 
     const handleUploadFile = (fileName: string) => {
-        const id = nanoid()
+        const fileId = nanoid()
         const newFile = {
-            id: id,
+            id: fileId,
             fileName: fileName
         }
         setFiles([...files, newFile])
@@ -67,7 +72,7 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     }
 
     return (
-        <div className={styles['modal-window-container']}>
+        <div className={styles["modal-window-container"]}>
             <form onSubmit={(event) => handleSubmit(event)} className={styles["form-wrapper"]}>
                 <div className={styles.title}>{modalWindowTitle}</div>
                 <input
@@ -95,7 +100,7 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
                         handleSetDeadline={setDeadline}
                     />
                 }
-                <div className={styles['buttons-wrapper']}>
+                <div className={styles["buttons-wrapper"]}>
                     <button className={styles["button-create"]}>Create</button>
                     <input type="button" onClick={() => handleShowModal(false)} className={styles["button-cancel"]} value={"Cancel"} />
                 </div>

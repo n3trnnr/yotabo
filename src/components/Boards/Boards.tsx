@@ -13,13 +13,13 @@ const Boards: React.FC = () => {
                 </div>
                 <div className={styles["board-wrapper"]}>
                     <ul className={styles["tasks-list-wrapper"]}>
-                        <Link to="/task">
-                            <TaskCard />
-                            <TaskCard />
-                            <TaskCard />
-                            <TaskCard />
+                        <Link to="task">
                             <TaskCard />
                         </Link>
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
+                        <TaskCard />
                     </ul>
                 </div>
             </div>

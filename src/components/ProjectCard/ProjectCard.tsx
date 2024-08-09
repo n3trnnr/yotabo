@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Project.module.scss'
+import styles from './ProjectCard.module.scss'
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import SvgIcons from "../UI/Svg/SvgIcons";
 import Button from "../UI/Button/Button";

@@ -2,7 +2,8 @@
 
 %nav-item-position-center {
     max-width: 150px;
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin-left: 40px;
     line-height: 45px;
     display: flex;
     align-items: center;
@@ -15,7 +16,8 @@
 
 .aside-nav-wrapper {
     width: 100%;
-    height: 85%;
+    height: calc(100% - 30px);
+    margin-top: 30px;
     @extend %nav-item-font;
     color: variables.$color-light-grey;
 }
@@ -47,11 +49,17 @@
         color: black;
         border-right: 3px solid;
         color: variables.$color-black;
-        @extend %icon-color-black
+        @extend %icon-color-black;
     }
 }
 
 .nav-item-logout {
     height: 20%;
-    @extend %nav-item-font
+
+    @extend %nav-item-font;
+
+    .logout-button {
+        background: none;
+        font-size: inherit;
+    }
 }

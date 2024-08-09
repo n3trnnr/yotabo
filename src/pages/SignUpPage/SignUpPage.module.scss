@@ -1,0 +1,8 @@
+@use '../../styles/variables';
+
+.sign-up-container {
+    height: 100%;
+    width: 100%;
+    @extend %element-position-center;
+    flex-direction: column;
+}

@@ -18,7 +18,7 @@ const MainComponentHeader: React.FC<IMainComponentHeader> = ({ type, children })
     }
 
     return (
-        <header className={styles['section-header']}>
+        <header className={styles['main-component-header']}>
             {type === 'info' &&
                 <div className={styles['project-info']}>
                     <ProjectNav />

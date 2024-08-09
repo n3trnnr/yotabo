@@ -6,7 +6,7 @@ export const SidebarData = [
     {
         key: nanoid(),
         title: 'Dashboard',
-        path: '/',
+        path: 'dashboard',
         icon: (styleName: string): ReactNode => {
             return <SvgIcons iconName={'dashboard'} styleName={styleName} />
         }
@@ -14,7 +14,7 @@ export const SidebarData = [
     {
         key: nanoid(),
         title: 'Projects',
-        path: '/projects',
+        path: 'projects',
         icon: (styleName: string): ReactNode => {
             return <SvgIcons iconName={'projects'} styleName={styleName} />
         }
@@ -22,7 +22,7 @@ export const SidebarData = [
     {
         key: nanoid(),
         title: 'Settings',
-        path: '/settings',
+        path: 'settings',
         icon: (styleName: string): ReactNode => {
             return <SvgIcons iconName={'settings'} styleName={styleName} />
         }
@@ -30,7 +30,7 @@ export const SidebarData = [
     {
         key: nanoid(),
         title: 'Trash',
-        path: '/trash',
+        path: 'trash',
         icon: (styleName: string): ReactNode => {
             return <SvgIcons iconName={'trash'} styleName={styleName} />
         }
@@ -38,7 +38,7 @@ export const SidebarData = [
     {
         key: nanoid(),
         title: 'Log out',
-        path: '/logout',
+        path: 'logout',
         icon: (styleName: string): ReactNode => {
             return <SvgIcons iconName={'logOut'} styleName={styleName} />
         }

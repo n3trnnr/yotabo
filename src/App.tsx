@@ -1,8 +1,12 @@
 import './App.module.scss'
-import Router from './router/Router'
+import Router from './router/router'
 
 const App = () => {
-  return <Router />
+  return (
+    <>
+      <Router />
+    </>
+  )
 }
 
 export default App

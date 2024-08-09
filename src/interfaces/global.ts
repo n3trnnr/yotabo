@@ -1,14 +1,14 @@
-interface IProject {
+export interface IProject {
     id: number,
     title: string,
     description: string,
-    isFavourite: boolean,
+    isFavorites: boolean,
     progress: number,
     creationDate: Date
     isDeleted: boolean
 }
 
-interface ITask {
+export interface ITask {
     id: number,
     phase: 'toDo' | 'inProgress' | 'done'
     title: string,
@@ -21,7 +21,7 @@ interface ITask {
     files: File
 }
 
-interface ISidebarPages {
+export interface ISidebarPages {
     key: string;
     title: string;
     icon: JSX.Element;

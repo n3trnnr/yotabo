@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainComponentHeader from '../../components/MainComponentHeader/MainComponentHeader'
-import Project from '../../components/Project/Project';
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
 import styles from './ProjectsPage.module.scss'
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import Button from '../../components/UI/Button/Button';
@@ -44,18 +44,18 @@ const ProjectsPage: React.FC = () => {
             <div className={styles['projects-list-container']}>
                 <div className={styles['projects-list-wrapper']}>
 
-                    <div onDoubleClick={() => navigate('/boards')}>
-                        <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <div onDoubleClick={() => navigate('boards')}>
+                        <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
                     </div>
 
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <Project title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
+                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
                 </div>
             </div>
         </>

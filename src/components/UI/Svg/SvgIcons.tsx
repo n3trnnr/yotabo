@@ -24,8 +24,9 @@ import ListView from '../../../assets/list-view.svg?react'
 import Description from '../../../assets/description.svg?react'
 import Favourites from '../../../assets/favourites-false.svg?react'
 import Cross from '../../../assets/close-cross.svg?react'
+import { ISvgIcons } from "./SvgIcons.props";
 
-const iconsList = {
+export const iconsList = {
     logo: Logo,
     dashboard: Dashboard,
     projects: Projects,
@@ -53,12 +54,7 @@ const iconsList = {
     cross: Cross
 }
 
-interface ISvgIcons {
-    iconName: keyof typeof iconsList;
-    styleName?: string;
-}
-
-const SvgIcons: React.FC<ISvgIcons> = ({ iconName, styleName }) => {
+const SvgIcons = ({ iconName, styleName }: ISvgIcons) => {
 
     const IconComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>> = iconsList[iconName]
 
