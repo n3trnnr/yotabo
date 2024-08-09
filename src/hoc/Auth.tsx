@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import { useAppSelector } from '../hooks/useStore';
 import { Navigate } from 'react-router-dom';
 
 interface IAuth {
@@ -7,10 +8,11 @@ interface IAuth {
 
 const Auth: React.FC<IAuth> = ({ children }) => {
 
-    // const data = false;
-    // if (!data) {
-    //     return <Navigate to={'/signup'} />
-    // }
+    const jwt = useAppSelector((state) => state.user.jwt)
+
+    if (!jwt) {
+        return <Navigate to={'/signup'} />
+    }
 
     return (
         <>

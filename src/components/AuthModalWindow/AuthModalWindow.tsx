@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form'
 import styles from './AuthModalWindow.module.scss'
 import SvgIcons from '../UI/Svg/SvgIcons';
-import { Link } from 'react-router-dom';
-
-interface IAuthModalWindow {
-    type: 'signup' | 'signin'
-}
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { loginUser, registerUser } from '../../store/slices/userSlice';
+import { IAuthModalWindow } from './AuthModalWindow.props';
 
 interface IInputs {
     username: string,
+    identifier: string,
     password: string,
     email: string
 }
 
 const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
 
-    const { register,
+    const dispatch = useAppDispatch()
+    const { error, loadingStatus, jwt } = useAppSelector((state) => state.user)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!error && jwt) {
+            navigate('/')
+        }
+    }, [error, jwt])
+
+    const {
+        register,
         handleSubmit,
         reset,
         formState: { errors, isValid }
@@ -25,12 +36,27 @@ const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
     })
 
     const submit: SubmitHandler<IInputs> = (data) => {
-        console.log('data', data);
+        if (type === 'signup') {
+            registration(data)
+        } else {
+            login(data)
+        }
         reset()
     }
 
+    const registration = async (data: IInputs) => {
+        dispatch(registerUser(data))
+    }
+
+    const login = (data: IInputs) => {
+        dispatch(loginUser(data))
+    }
+
+
     return (
         <>
+            {error && <div>{error}</div>}
+            {loadingStatus && <div>Loading...</div>}
             <SvgIcons iconName={'logo'} styleName={styles['logo-icon']} />
             <div className={styles["modal-window-container"]}>
                 {type === 'signup' ?
@@ -84,7 +110,7 @@ const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
                             <div className={styles.title}>Sign In</div>
                             <label className={styles.label}>
                                 <input
-                                    {...register('username', { required: true, pattern: /^[A-Za-z](.+[A-Za-z-_\d])/i })}
+                                    {...register('identifier', { required: true, pattern: /^[A-Za-z](.+[A-Za-z-_\d])/i })}
                                     className={styles["input-auth"]} type="text" placeholder='Login'
                                 />
                                 {errors.username && <div className={styles['error-message']}>incorrect login</div>}
