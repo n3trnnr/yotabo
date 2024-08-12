@@ -1,11 +1,18 @@
 export interface IProject {
     id: number,
-    title: string,
-    description: string,
-    isFavorites: boolean,
-    progress: number,
-    creationDate: Date
-    isDeleted: boolean
+    attributes: {
+        title: string,
+        description: string,
+        isFavorites: boolean,
+        progress: number,
+        createdAt: string
+        isDeleted: boolean
+    }
+}
+
+export interface IProjectServer {
+    data: IProject[],
+    meta: any
 }
 
 export interface ITask {

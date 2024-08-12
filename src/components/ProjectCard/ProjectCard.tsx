@@ -1,25 +1,19 @@
-import React from "react";
 import styles from './ProjectCard.module.scss'
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import SvgIcons from "../UI/Svg/SvgIcons";
 import Button from "../UI/Button/Button";
+import { IProjectCard } from "./ProjectCard.props";
 
-interface IProject {
-    title: string;
-    description: string;
-    creationDate: string;
-}
-
-const Project: React.FC<IProject> = ({ title, description, creationDate }) => {
+const Project = ({ projectData }: IProjectCard) => {
     return (
         <div className={styles['project-card-container']}>
             <div className={styles['project-card-wrapper']}>
-                <div className={styles.title}>{title}</div>
-                <p className={styles.description}>{description}</p>
+                <div className={styles.title}>{projectData.attributes.title}</div>
+                <p className={styles.description}>{projectData.attributes.description}</p>
                 <div className={styles['progress-bar']}>
-                    <ProgressBar type={'small'} />
+                    <ProgressBar type={'small'} progressPercentage={projectData.attributes.progress} />
                 </div>
-                <div className={styles['creation-date']}>{creationDate}</div>
+                <div className={styles['creation-date']}>{new Date(projectData.attributes.createdAt).toLocaleDateString()}</div>
                 <span className={styles['burger-menu']}>
                     <Button colorStyle={'none'}>
                         <SvgIcons iconName={'burgerMenu'} />

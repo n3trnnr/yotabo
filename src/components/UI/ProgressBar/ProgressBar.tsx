@@ -1,13 +1,7 @@
-import React from "react";
 import styles from './ProgressBar.module.scss'
+import { IProgressBar } from "./ProgressBar.props";
 
-interface IProgressBar {
-    type: 'big' | 'small'
-}
-
-const ProgressBar: React.FC<IProgressBar> = ({ type }) => {
-
-    let progressPercentage: number = 50
+const ProgressBar = ({ type, progressPercentage }: IProgressBar) => {
 
     return (
         <div className={styles['progress-bar-wrapper']}>
@@ -21,7 +15,7 @@ const ProgressBar: React.FC<IProgressBar> = ({ type }) => {
                 :
                 <>
                     <div className={styles['progress-bar-fill-small']}>
-                        <div className={styles['progress-bar-progress-small']} />
+                        <div className={styles['progress-bar-progress-small']} style={{ width: `${progressPercentage}` }} />
                     </div>
                 </>
             }

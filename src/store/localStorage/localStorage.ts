@@ -7,7 +7,7 @@ export const getState = (key: string) => {
     }
 }
 
-export const saveState = (key: string, data: unknown) => {
+export const saveState = (key: string, data: string | null) => {
     if (key && data || data === null) {
         const state = JSON.stringify(data);
         localStorage.setItem(key, state)

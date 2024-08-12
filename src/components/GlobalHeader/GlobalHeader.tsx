@@ -17,7 +17,7 @@ const GlobalHeader: React.FC<IGlobalHeader> = ({ children }) => {
     }
 
     const location = useLocation()
-    console.log('location', location);
+    // console.log('location', location);
 
     return (
         <header className={styles['header']}>

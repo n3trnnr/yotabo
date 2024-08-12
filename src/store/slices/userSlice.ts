@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { getState } from "../localStorage/localStorage";
 import { PREFIX, TOKEN_PRESISTENT_STATE_NAME } from "../../constants/constants";
-import { RootState } from "../store";
 
 interface IUserDataClient { // Импортировать из AuthModalWindow
     username?: string;
@@ -65,12 +64,13 @@ export const registerUser = createAsyncThunk<IUserDataServer, IUserDataClient, {
 export const loginUser = createAsyncThunk<IUserDataServer, IUserDataClient, { rejectValue: string }>(
     'user/loginUser',
     async (loginUser, { rejectWithValue }) => {
-        const response = await fetch(`${PREFIX}/api/auth/local`, {
+        const response = await fetch(`${PREFIX}/api/auth/local?populate=*`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+
             },
-            body: JSON.stringify(loginUser)
+            body: JSON.stringify(loginUser),
         })
 
         if (!response.ok) {
