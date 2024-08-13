@@ -1,30 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SvgIcons from "../../UI/Svg/SvgIcons";
 import styles from './ProjectNav.module.scss'
+import cn from 'classnames'
 
-const ProjectNav: React.FC = () => {
+const ProjectNav = () => {
     return (
         <nav className={styles['project-nav']}>
             <ul className={styles['project-nav-list']}>
                 <li>
-                    <Link to={'/description'} className={styles['nav-item']}>
+                    <NavLink
+                        to={'description'}
+                        className={({ isActive }) => cn(styles['nav-item'], {
+                            [styles['active']]: isActive
+                        })}
+                    >
                         <div className={styles['icon-wrapper']}>
                             <SvgIcons iconName={'description'} />
                         </div>
                         <span>Description</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to={'/boards'} className={styles['nav-item']}>
+                    <NavLink
+                        to={'boards'}
+                        className={({ isActive }) => cn(styles['nav-item'], {
+                            [styles['active']]: isActive
+                        })}
+                    >
                         <div className={styles['icon-wrapper']}>
                             <SvgIcons iconName={'boards'} />
                         </div>
                         <span>Boards</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
-        </nav>
+        </nav >
     );
 }
 

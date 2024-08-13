@@ -1,7 +1,7 @@
 import styles from './ProgressBar.module.scss'
 import { IProgressBar } from "./ProgressBar.props";
 
-const ProgressBar = ({ type, progressPercentage }: IProgressBar) => {
+const ProgressBar = ({ type, progressPercentage = 0 }: IProgressBar) => {
 
     return (
         <div className={styles['progress-bar-wrapper']}>

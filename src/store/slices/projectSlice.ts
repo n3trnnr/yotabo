@@ -4,7 +4,8 @@ import { PREFIX } from "../../constants/constants";
 import { RootState } from "../../store/store";
 
 interface IProjectSlice {
-    projects: IProject[]
+    projects: IProject[],
+    project: IProject | null
 }
 
 interface IProjectDataClient {
@@ -29,6 +30,27 @@ export const getProjectsData = createAsyncThunk<IProjectServer, void, { rejectVa
         }
 
         const data = await response.json() as IProjectServer
+        return data
+    }
+)
+
+export const getProjectDataById = createAsyncThunk<IProject, number, { rejectValue: string, state: RootState }>(
+    'project/getProjectDataById',
+    async (id, { rejectWithValue, getState }) => {
+        const jwt = getState().user.jwt
+        const response = await fetch(`${PREFIX}/api/projects/${id}?populate=*`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        })
+
+        if (!response.ok) {
+            const errorData = await response.json()
+            return rejectWithValue(`${response.status.toString()} - ${response.statusText} - ${errorData?.error?.message}`)
+        }
+
+        const data = await response.json() as IProject
         return data
     }
 )
@@ -58,7 +80,8 @@ export const postProjectsData = createAsyncThunk<IProjectServer, IProjectDataCli
 )
 
 const initialState: IProjectSlice = {
-    projects: []
+    projects: [],
+    project: null
 }
 
 const projectSlice = createSlice({
@@ -67,19 +90,24 @@ const projectSlice = createSlice({
     reducers: {
 
     },
-    extraReducers: (buldler) => {
-        buldler
+    extraReducers: (builder) => {
+        builder
             .addCase(getProjectsData.fulfilled, (state, action) => {
                 console.log('action', action.payload);
 
                 state.projects = action.payload.data
             })
-            .addCase(postProjectsData.fulfilled, (state, action) => {
-                console.log('action', action.payload);
 
+            .addCase(postProjectsData.fulfilled, (state, action) => {
+                console.log('postProjectsData', action.payload);
                 // state.projects = action.payload.data
             })
-    }
+
+            .addCase(getProjectDataById.fulfilled, (state, action) => {
+                // console.log('getProjectDataById - ', action.payload);
+                state.project = action.payload
+            })
+    },
 
 })
 

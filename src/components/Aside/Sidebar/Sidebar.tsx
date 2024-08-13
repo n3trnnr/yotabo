@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import styles from './Sidebar.module.scss'
+import cn from 'classnames'
 import { SidebarData } from './SidebarData.tsx'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/useStore.ts";
 import { userActions } from "../../../store/slices/userSlice.ts";
 
@@ -22,12 +23,12 @@ const Sidebar: React.FC = () => {
                 {SidebarData.map((item: ISidebarData) => (
                     item.title !== 'Log out' &&
                     <li key={item.key} className={styles["item-wrapper"]}>
-                        <Link to={item.path}>
+                        <NavLink to={item.path} >
                             <div className={styles["nav-item"]}>
                                 {item.icon(styles['aside-nav-icon'])}
                                 <span>{item.title}</span>
                             </div>
-                        </Link>
+                        </NavLink>
                     </li>
                 ))}
             </ul>

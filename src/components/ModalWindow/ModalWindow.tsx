@@ -4,14 +4,19 @@ import Button from "../UI/Button/Button";
 import SvgIcons from "../UI/Svg/SvgIcons";
 import AdvancedSettings from "./AdvancedSettings/AdvancedSettings";
 import { nanoid } from "nanoid";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { IModalWindow } from "./ModalWindow.props";
 
-interface IModalWindow {
-    type: "simple" | "advanced";
-    modalWindowTitle: string;
-    handleShowModal: (state: boolean) => void;
+export interface IInputs {
+    title: string,
+    description: string,
+    priority?: 'low' | 'med' | 'high',
+    deadline?: string,
+    cover?: string,
+    files?: any
 }
 
-const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleShowModal }) => {
+const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) => {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -19,6 +24,13 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
     const [deadline, setDeadline] = useState('')
     const [cover, setCover] = useState('')
     const [files, setFiles] = useState<any>([])
+
+    const {
+        register,
+        handleSubmit,
+        // reset,
+        // formState: { errors, isValid }
+    } = useForm<IInputs>()
 
     const id = nanoid()
 
@@ -61,27 +73,32 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
         setCover(coverName)
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+    const submit: SubmitHandler<IInputs> = async (data) => {
+        console.log('data - ', data);
+
+        // event.preventDefault()
         if (type === "simple") {
-            console.log("simple - ", newProject);
+            // console.log("simple - ", newProject);
         } else if (type === "advanced") {
-            console.log("advanced - ", newTask);
+            // console.log("advanced - ", newTask);
         }
         handleShowModal(false)
     }
 
     return (
         <div className={styles["modal-window-container"]}>
-            <form onSubmit={(event) => handleSubmit(event)} className={styles["form-wrapper"]}>
+            <form onSubmit={handleSubmit(submit)} className={styles["form-wrapper"]}>
                 <div className={styles.title}>{modalWindowTitle}</div>
                 <input
+                    {...register('title')}
+                    name="title"
                     onChange={(event) => setTitle(event.target.value)}
                     className={styles["input-title"]} type="text"
                     required
                     placeholder="Title"
                 />
                 <textarea
+                    {...register('description')}
                     onChange={(event) => setDescription(event.target.value)}
                     className={styles["textarea-description"]}
                     rows={5}
@@ -91,6 +108,7 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
                 />
                 {type === "advanced" &&
                     <AdvancedSettings
+                        register={register}
                         files={files}
                         handleUploadFile={handleUploadFile}
                         handleDeleteFile={handleDeleteFile}

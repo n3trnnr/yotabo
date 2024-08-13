@@ -25,6 +25,7 @@ const ProjectsPage = () => {
     }, [])
 
     // console.log('projects', projects);
+
     return (
         <>
             {showModal &&
@@ -51,15 +52,12 @@ const ProjectsPage = () => {
             <div className={styles['projects-list-container']}>
                 <div className={styles['projects-list-wrapper']}>
 
-                    {/* <div onDoubleClick={() => navigate('boards')}>
-                        <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    </div> */}
-
                     {projects && projects.map((project) => (
-                        // <div key={project.attributes.id}>
-                        <ProjectCard key={project.id} projectData={project} />
-                        // </div>
+                        <div onDoubleClick={() => navigate(`/projects/${project.id}/boards`)} key={project.id}>
+                            <ProjectCard key={project.id} projectData={project} />
+                        </div>
                     ))}
+
                 </div>
             </div>
         </>

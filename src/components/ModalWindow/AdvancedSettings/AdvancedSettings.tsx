@@ -2,8 +2,11 @@ import React from "react";
 import styles from './AdvancedSettings.module.scss'
 import SvgIcons from "../../UI/Svg/SvgIcons";
 import Button from "../../UI/Button/Button";
+import { UseFormRegister } from "react-hook-form";
+import { IInputs } from "../ModalWindow";
 
 interface IAdvancedSettings {
+    register: UseFormRegister<IInputs>
     files: []
     handleUploadFile: (fileName: string) => void;
     handleDeleteFile: (id: string) => void;
@@ -14,6 +17,7 @@ interface IAdvancedSettings {
 }
 
 const AdvancedSettings: React.FC<IAdvancedSettings> = ({
+    register,
     files,
     handleUploadFile,
     handleDeleteFile,
@@ -34,6 +38,7 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         <div className={styles["radio-group-wrapper"]}>
                             <label className={styles["radio"]}>
                                 <input
+                                    {...register('priority')}
                                     onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
@@ -46,6 +51,7 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                             </label>
                             <label className={styles["radio"]}>
                                 <input
+                                    {...register('priority')}
                                     onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
@@ -58,6 +64,7 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                             </label>
                             <label className={styles["radio"]}>
                                 <input
+                                    {...register('priority')}
                                     onChange={(event) => handeSetPriority(event.target.defaultValue)}
                                     className={styles["input-radio"]}
                                     type="radio"
@@ -76,6 +83,7 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         </div>
                         <div >
                             <input
+                                {...register('deadline')}
                                 onChange={(event) => handleSetDeadline(event.target.value)}
                                 className={styles["deadline-input"]}
                                 type="date"
@@ -91,7 +99,9 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         <label className={styles["label-cover"]}>
                             <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                             Upload cover
-                            <input type="file"
+                            <input
+                                {...register('files')}
+                                type="file"
                                 onChange={(event) => {
                                     handleUploadDeleteCover(event.target.value)
                                     event.target.value = ''
@@ -115,7 +125,9 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         <label className={styles["label-file"]}>
                             <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                             Upload file
-                            <input type="file"
+                            <input
+                                {...register('cover')}
+                                type="file"
                                 onChange={(event) => {
                                     handleUploadFile(event.target.value)
                                     event.target.value = ''
