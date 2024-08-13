@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from './Sidebar.module.scss'
 import cn from 'classnames'
 import { SidebarData } from './SidebarData.tsx'
@@ -13,7 +13,7 @@ interface ISidebarData {
     icon: (styleName: string) => ReactNode;
 }
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
 
     const dispatch = useAppDispatch()
 
@@ -22,9 +22,11 @@ const Sidebar: React.FC = () => {
             <ul className={styles["main-nav-list"]}>
                 {SidebarData.map((item: ISidebarData) => (
                     item.title !== 'Log out' &&
-                    <li key={item.key} className={styles["item-wrapper"]}>
-                        <NavLink to={item.path} >
-                            <div className={styles["nav-item"]}>
+                    <li key={item.key} >
+                        <NavLink to={item.path} className={({ isActive }) => cn(styles["item-wrapper"], {
+                            [styles['active']]: isActive
+                        })}>
+                            <div className={styles['nav-item']}>
                                 {item.icon(styles['aside-nav-icon'])}
                                 <span>{item.title}</span>
                             </div>
