@@ -1,45 +1,23 @@
 import { createSlice, createAsyncThunk, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { getState } from "../localStorage/localStorage";
 import { PREFIX, TOKEN_PRESISTENT_STATE_NAME } from "../../constants/constants";
-
-interface IUserDataClient { // Импортировать из AuthModalWindow
-    username?: string;
-    password: string;
-    email?: string;
-    identifier?: string;
-}
-
-interface IUserDataServer {
-    jwt: string;
-    user: IUser;
-}
-
-interface IUser {
-    blocked: boolean;
-    confirmed: boolean;
-    createdAt: string;
-    email: string;
-    id: number;
-    provider: string;
-    updatedAt: string;
-    username: string;
-}
+import { IUserData, IUserDataServer, IUserFormData } from "../../interfaces/store/userSlice";
 
 interface IUserSlice {
-    currentUser: IUser | {}
+    currentUser: IUserData | null
     jwt: null | string,
     loadingStatus: boolean,
     error: null | string,
 }
 
 const initialState: IUserSlice = {
-    currentUser: {},
+    currentUser: null,
     jwt: getState(TOKEN_PRESISTENT_STATE_NAME) ?? null,
     loadingStatus: false,
     error: null,
 }
 
-export const registerUser = createAsyncThunk<IUserDataServer, IUserDataClient, { rejectValue: string }>(
+export const registerUser = createAsyncThunk<IUserDataServer, IUserFormData, { rejectValue: string }>(
     'user/registerUser',
     async (newUser, { rejectWithValue }) => {
         const response = await fetch(`${PREFIX}/api/auth/local/register`, {
@@ -61,7 +39,7 @@ export const registerUser = createAsyncThunk<IUserDataServer, IUserDataClient, {
     }
 )
 
-export const loginUser = createAsyncThunk<IUserDataServer, IUserDataClient, { rejectValue: string }>(
+export const loginUser = createAsyncThunk<IUserDataServer, IUserFormData, { rejectValue: string }>(
     'user/loginUser',
     async (loginUser, { rejectWithValue }) => {
         const response = await fetch(`${PREFIX}/api/auth/local?populate=*`, {
@@ -109,7 +87,7 @@ const userSlice = createSlice({
             .addCase(
                 loginUser.fulfilled,
                 (state, action) => {
-                    console.log('action', action.payload);
+                    // console.log('action', action.payload);
 
                     state.currentUser = action.payload.user
                     state.jwt = action.payload.jwt

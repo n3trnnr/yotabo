@@ -12,7 +12,7 @@ const ProjectBoardsPage = () => {
                 </div>
                 <div className={styles["board-wrapper"]}>
                     <ul className={styles["tasks-list-wrapper"]}>
-                        <Link to="task">
+                        <Link to="boards/:id/task">
                             <TaskCard />
                         </Link>
                         <TaskCard />

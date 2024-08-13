@@ -2,7 +2,14 @@ import { nanoid } from "nanoid"
 import { ReactNode } from "react"
 import SvgIcons from "../../UI/Svg/SvgIcons"
 
-export const SidebarData = [
+interface ISidebarData {
+    key: string;
+    title: string;
+    path: string;
+    icon: (styleName: string) => ReactNode;
+}
+
+export const SidebarData: ISidebarData[] = [
     {
         key: nanoid(),
         title: 'Dashboard',

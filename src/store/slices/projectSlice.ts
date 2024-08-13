@@ -1,19 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IProject, IProjectServer } from './../../interfaces/global';
 import { PREFIX } from "../../constants/constants";
 import { RootState } from "../../store/store";
+import { IProject, IProjectFormData, IProjects } from "../../interfaces/store/projectSlice";
 
 interface IProjectSlice {
-    projects: IProject[],
+    projects: IProjects | null,
     project: IProject | null
 }
 
-interface IProjectDataClient {
-    title: string,
-    description: string
-}
-
-export const getProjectsData = createAsyncThunk<IProjectServer, void, { rejectValue: string, state: RootState }>(
+export const getProjectsData = createAsyncThunk<IProjects, void, { rejectValue: string, state: RootState }>(
     'project/getProjectsData',
     async (_, { rejectWithValue, getState }) => {
         const jwt = getState().user.jwt
@@ -29,7 +24,7 @@ export const getProjectsData = createAsyncThunk<IProjectServer, void, { rejectVa
             return rejectWithValue(`${response.status.toString()} - ${response.statusText} - ${errorData?.error?.message}`)
         }
 
-        const data = await response.json() as IProjectServer
+        const data = await response.json() as IProjects
         return data
     }
 )
@@ -55,7 +50,7 @@ export const getProjectDataById = createAsyncThunk<IProject, number, { rejectVal
     }
 )
 
-export const postProjectsData = createAsyncThunk<IProjectServer, IProjectDataClient, { rejectValue: string, state: RootState }>(
+export const postProjectsData = createAsyncThunk<IProject, IProjectFormData, { rejectValue: string, state: RootState }>(
     'project/postProjectsData',
     async (ProjectDataClient, { rejectWithValue, getState }) => {
         const jwt = getState().user.jwt;
@@ -74,13 +69,13 @@ export const postProjectsData = createAsyncThunk<IProjectServer, IProjectDataCli
             return rejectWithValue(`${response.status.toString()} - ${response.statusText} - ${errorData?.error?.message}`)
         }
 
-        const data = await response.json() as IProjectServer
+        const data = await response.json() as IProject
         return data
     }
 )
 
 const initialState: IProjectSlice = {
-    projects: [],
+    projects: null,
     project: null
 }
 
@@ -95,17 +90,17 @@ const projectSlice = createSlice({
             .addCase(getProjectsData.fulfilled, (state, action) => {
                 console.log('action', action.payload);
 
-                state.projects = action.payload.data
-            })
-
-            .addCase(postProjectsData.fulfilled, (state, action) => {
-                console.log('postProjectsData', action.payload);
-                // state.projects = action.payload.data
+                state.projects = action.payload
             })
 
             .addCase(getProjectDataById.fulfilled, (state, action) => {
-                // console.log('getProjectDataById - ', action.payload);
+                // console.log('getProjectDataById - ', action.payload.data);
                 state.project = action.payload
+            })
+
+            .addCase(postProjectsData.fulfilled, (state, action) => {
+                // console.log('postProjectsData', action.payload);
+                // state.projects = action.payload.data
             })
     },
 

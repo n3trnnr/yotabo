@@ -27,7 +27,7 @@ const router = createBrowserRouter(createRoutesFromElements(
                 <Route path='/projects/:id/boards' element={<ProjectBoardsPage />} />
                 <Route path='/projects/:id/description' element={<ProjectDescriptionPage />} />
             </Route>
-            <Route path='projects/boards/task' element={<TaskPage />} />
+            <Route path='projects/:id/boards/:id/task' element={<TaskPage />} />
             <Route path='*' element={<NotFound />} />
         </Route>
         <Route path='/signup' element={<SignUpPage />} />

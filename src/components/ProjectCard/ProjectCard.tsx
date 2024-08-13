@@ -4,7 +4,7 @@ import SvgIcons from "../UI/Svg/SvgIcons";
 import Button from "../UI/Button/Button";
 import { IProjectCard } from "./ProjectCard.props";
 
-const Project = ({ projectData }: IProjectCard) => {
+const ProjectCard = ({ projectData }: IProjectCard) => {
     return (
         <div className={styles['project-card-container']}>
             <div className={styles['project-card-wrapper']}>
@@ -29,4 +29,4 @@ const Project = ({ projectData }: IProjectCard) => {
     );
 }
 
-export default Project;
+export default ProjectCard;

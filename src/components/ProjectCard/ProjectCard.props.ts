@@ -1,5 +1,5 @@
-import { IProject } from "../../interfaces/global";
+import { IProjectData } from "../../interfaces/store/projectSlice";
 
 export interface IProjectCard {
-    projectData: IProject
+    projectData: IProjectData
 }

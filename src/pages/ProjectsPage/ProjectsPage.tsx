@@ -52,7 +52,7 @@ const ProjectsPage = () => {
             <div className={styles['projects-list-container']}>
                 <div className={styles['projects-list-wrapper']}>
 
-                    {projects && projects.map((project) => (
+                    {projects && projects?.data.map((project) => (
                         <div onDoubleClick={() => navigate(`/projects/${project.id}/boards`)} key={project.id}>
                             <ProjectCard key={project.id} projectData={project} />
                         </div>
