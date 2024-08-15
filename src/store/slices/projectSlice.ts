@@ -12,7 +12,7 @@ export const getProjectsData = createAsyncThunk<IProjects, void, { rejectValue: 
     'project/getProjectsData',
     async (_, { rejectWithValue, getState }) => {
         const jwt = getState().user.jwt
-        const response = await fetch(`${PREFIX}/api/projects?populate=*`, {
+        const response = await fetch(`${PREFIX}/api/projects`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${jwt}`
@@ -54,13 +54,20 @@ export const postProjectsData = createAsyncThunk<IProject, IProjectFormData, { r
     'project/postProjectsData',
     async (ProjectDataClient, { rejectWithValue, getState }) => {
         const jwt = getState().user.jwt;
-        const response = await fetch(`${PREFIX}/api/projects?populate=*`, {
-            method: 'GET',
+        const userId = getState().user.currentUser?.id
+
+        ProjectDataClient.user = userId
+
+        const response = await fetch(`${PREFIX}/api/projects`, {
+            method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${jwt}`
             },
             body: JSON.stringify(
-                ProjectDataClient
+                {
+                    data: { ...ProjectDataClient }
+                }
             )
         })
 
@@ -88,7 +95,7 @@ const projectSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getProjectsData.fulfilled, (state, action) => {
-                console.log('action', action.payload);
+                // console.log('action', action.payload);
 
                 state.projects = action.payload
             })
@@ -100,7 +107,9 @@ const projectSlice = createSlice({
 
             .addCase(postProjectsData.fulfilled, (state, action) => {
                 // console.log('postProjectsData', action.payload);
-                // state.projects = action.payload.data
+                if (state.projects) {
+                    state.projects.data.push(action.payload.data)
+                }
             })
     },
 

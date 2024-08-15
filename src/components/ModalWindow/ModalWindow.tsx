@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from './ModalWindow.module.scss'
 import Button from "../UI/Button/Button";
 import SvgIcons from "../UI/Svg/SvgIcons";
@@ -6,8 +6,10 @@ import AdvancedSettings from "./AdvancedSettings/AdvancedSettings";
 import { nanoid } from "nanoid";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IModalWindow } from "./ModalWindow.props";
+import { useAppDispatch } from "../../hooks/useStore";
+import { postProjectsData } from "../../store/slices/projectSlice";
 
-export interface IInputs {
+export interface IModalWindowInputs {
     title: string,
     description: string,
     priority?: 'low' | 'med' | 'high',
@@ -17,6 +19,8 @@ export interface IInputs {
 }
 
 const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) => {
+
+    const dispatch = useAppDispatch()
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -30,30 +34,7 @@ const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) 
         handleSubmit,
         // reset,
         // formState: { errors, isValid }
-    } = useForm<IInputs>()
-
-    const id = nanoid()
-
-    const newProject = {
-        id: id,
-        title: title,
-        description: description,
-        progress: 0,
-        creationDate: new Date().toLocaleDateString(),
-        isFavorites: false,
-        isDeleted: false
-    }
-
-    const newTask = {
-        id: id,
-        title: title,
-        description: description,
-        priority: priority,
-        creationDate: new Date().toLocaleDateString(),
-        deadline: deadline,
-        cover: cover,
-        files: files
-    }
+    } = useForm<IModalWindowInputs>()
 
     const handleUploadFile = (fileName: string) => {
         const fileId = nanoid()
@@ -73,16 +54,17 @@ const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) 
         setCover(coverName)
     }
 
-    const submit: SubmitHandler<IInputs> = async (data) => {
-        console.log('data - ', data);
-
-        // event.preventDefault()
+    const submit: SubmitHandler<IModalWindowInputs> = async (data) => {
+        // console.log('data - ', data);
         if (type === "simple") {
-            // console.log("simple - ", newProject);
+            postProjectFormData(data)
         } else if (type === "advanced") {
-            // console.log("advanced - ", newTask);
         }
         handleShowModal(false)
+    }
+
+    const postProjectFormData = (data: IModalWindowInputs) => {
+        dispatch(postProjectsData(data))
     }
 
     return (
@@ -92,14 +74,14 @@ const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) 
                 <input
                     {...register('title')}
                     name="title"
-                    onChange={(event) => setTitle(event.target.value)}
+                    // onChange={(event) => setTitle(event.target.value)}
                     className={styles["input-title"]} type="text"
                     required
                     placeholder="Title"
                 />
                 <textarea
                     {...register('description')}
-                    onChange={(event) => setDescription(event.target.value)}
+                    // onChange={(event) => setDescription(event.target.value)}
                     className={styles["textarea-description"]}
                     rows={5}
                     cols={40}

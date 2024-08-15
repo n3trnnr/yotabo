@@ -1,6 +1,7 @@
-export interface IProjectFormData {
-    title: string,
-    description: string
+import { IModalWindowInputs } from "../../components/ModalWindow/ModalWindow"
+
+export interface IProjectFormData extends IModalWindowInputs {
+    user?: number
 }
 
 export interface IProjectData {

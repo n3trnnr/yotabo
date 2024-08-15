@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { getState } from "../localStorage/localStorage";
-import { PREFIX, TOKEN_PRESISTENT_STATE_NAME } from "../../constants/constants";
+import { PREFIX, TOKEN_PRESISTENT_STATE_NAME, USER_PRESISTENT_STATE_NAME } from "../../constants/constants";
 import { IUserData, IUserDataServer, IUserFormData } from "../../interfaces/store/userSlice";
 
 interface IUserSlice {
@@ -11,7 +11,7 @@ interface IUserSlice {
 }
 
 const initialState: IUserSlice = {
-    currentUser: null,
+    currentUser: getState(USER_PRESISTENT_STATE_NAME) ?? null,
     jwt: getState(TOKEN_PRESISTENT_STATE_NAME) ?? null,
     loadingStatus: false,
     error: null,
@@ -68,41 +68,37 @@ const userSlice = createSlice({
     reducers: {
         logOut: (state) => {
             state.jwt = null
-            // state.currentUser = {}
+            state.currentUser = null
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(
-                registerUser.fulfilled,
-                (state, action) => {
+                registerUser.fulfilled, (state, action) => {
                     console.log('action', action.payload);
 
                     state.currentUser = action.payload.user
                     state.jwt = action.payload.jwt
-                    state.loadingStatus = true
+                    // state.loadingStatus = true
                 }
             )
 
             .addCase(
-                loginUser.fulfilled,
-                (state, action) => {
+                loginUser.fulfilled, (state, action) => {
                     // console.log('action', action.payload);
-
                     state.currentUser = action.payload.user
                     state.jwt = action.payload.jwt
-                    state.loadingStatus = true
+                    // state.loadingStatus = true
                 }
             )
 
             .addMatcher(isRejected, (state, action: PayloadAction<string>) => {
-                console.log('payload - ', action.payload);
-
-                state.error = action.payload
-                state.loadingStatus = false
+                // console.log('payload - ', action.payload);
+                // state.error = action.payload
+                // state.loadingStatus = false
             })
             .addMatcher(isPending, (state) => {
-                state.loadingStatus = true;
+                // state.loadingStatus = true;
             })
     }
 })

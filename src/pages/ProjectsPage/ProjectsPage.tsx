@@ -9,8 +9,6 @@ import SvgIcons from '../../components/UI/Svg/SvgIcons';
 import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { getProjectsData } from '../../store/slices/projectSlice';
 
-//Не забыть переписать путь в Link на projects/id
-
 const ProjectsPage = () => {
     const dispatch = useAppDispatch()
     const projects = useAppSelector((state) => state.project.projects)
@@ -22,9 +20,10 @@ const ProjectsPage = () => {
 
     useEffect(() => {
         dispatch(getProjectsData())
-    }, [])
+    }, [dispatch])
 
     // console.log('projects', projects);
+
 
     return (
         <>

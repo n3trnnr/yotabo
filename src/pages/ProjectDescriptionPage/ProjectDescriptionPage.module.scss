@@ -1,0 +1,67 @@
+@use '../../styles/variables';
+
+.description-page {
+    width: 100%;
+    height: calc(100% - 105px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.description-container {
+    // width: 1049px;
+    // height: 230px;
+    height: auto;
+    border: 1px solid variables.$color-light-grey;
+    border-radius: variables.$main-radius;
+    @extend %element-position-center;
+    position: relative;
+}
+
+.project-wrapper {
+    // width: 1009px;
+    // height: 190px;
+    height: auto;
+    padding: 20px;
+    @extend %element-position-center;
+    align-items: normal;
+}
+
+.cover-wrapper {
+    float: left;
+    width: 190px;
+    height: 190px;
+    border: 1px solid variables.$color-light-grey;
+    border-radius: variables.$main-radius;
+    @extend %element-position-center;
+}
+
+.content-wrapper {
+    width: 778px;
+    // height: 190px;
+    // margin-left: 30px;
+}
+
+.text-content {
+    width: 100%;
+    // height: 140px;
+    padding-bottom: 50px;
+
+    .title-wrapper {
+        margin-bottom: 10px;
+
+        .title {
+            @extend %font-titel-20px-semibold;
+        }
+    }
+
+    .description {
+        color: variables.$color-light-grey;
+    }
+}
+
+.burger-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
