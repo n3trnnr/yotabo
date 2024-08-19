@@ -1,31 +1,11 @@
-import React from "react";
 import styles from './AdvancedSettings.module.scss'
 import SvgIcons from "../../UI/Svg/SvgIcons";
 import Button from "../../UI/Button/Button";
-import { UseFormRegister } from "react-hook-form";
-import { IInputs } from "../ModalWindow";
+import { IAdvancedSettings } from "./AdvancedSettings.props";
+import CustomInput from '../../CustomInput/CustomInput';
+import { IFile } from '../ModalWindow';
 
-interface IAdvancedSettings {
-    register: UseFormRegister<IInputs>
-    files: []
-    handleUploadFile: (fileName: string) => void;
-    handleDeleteFile: (id: string) => void;
-    cover: string;
-    handleUploadDeleteCover: (coverName: string) => void;
-    handeSetPriority: (priority: string) => void;
-    handleSetDeadline: (date: string) => void;
-}
-
-const AdvancedSettings: React.FC<IAdvancedSettings> = ({
-    register,
-    files,
-    handleUploadFile,
-    handleDeleteFile,
-    cover,
-    handleUploadDeleteCover,
-    handeSetPriority,
-    handleSetDeadline
-}) => {
+const AdvancedSettings = ({ register, files, handleDeleteFile }: IAdvancedSettings) => {
 
     return (
         <div className={styles["advanced-settings-container"]}>
@@ -38,11 +18,10 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         <div className={styles["radio-group-wrapper"]}>
                             <label className={styles["radio"]}>
                                 <input
-                                    {...register('priority')}
-                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
+                                    {...register('priority', { required: true })}
                                     className={styles["input-radio"]}
                                     type="radio"
-                                    name="priority-radio"
+                                    name="priority"
                                     defaultValue={"low"}
                                 />
                                 <span className={styles["radio-description"]}>
@@ -51,11 +30,10 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                             </label>
                             <label className={styles["radio"]}>
                                 <input
-                                    {...register('priority')}
-                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
+                                    {...register('priority', { required: true })}
                                     className={styles["input-radio"]}
                                     type="radio"
-                                    name="priority-radio"
+                                    name="priority"
                                     defaultValue={"med"}
                                 />
                                 <span className={styles["radio-description"]}>
@@ -64,11 +42,10 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                             </label>
                             <label className={styles["radio"]}>
                                 <input
-                                    {...register('priority')}
-                                    onChange={(event) => handeSetPriority(event.target.defaultValue)}
+                                    {...register('priority', { required: true })}
                                     className={styles["input-radio"]}
                                     type="radio"
-                                    name="priority-radio"
+                                    name="priority"
                                     defaultValue={"high"}
                                 />
                                 <span className={styles["radio-description"]}>
@@ -83,8 +60,7 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                         </div>
                         <div >
                             <input
-                                {...register('deadline')}
-                                onChange={(event) => handleSetDeadline(event.target.value)}
+                                {...register('deadline', { required: true })}
                                 className={styles["deadline-input"]}
                                 type="date"
                                 name="deadline"
@@ -93,19 +69,53 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                     </div>
                 </div>
             </div>
+
             <div className={styles["files-block-container"]}>
-                <div className={styles["files-block-wrapper"]}>
-                    <div className={styles["upload-cover-wrapper"]}>
+
+                {!files?.length && <CustomInput
+                    type={'file'}
+                    register={register}
+                    labelClassName={styles["label-file"]}
+                    inputName={'file'}
+                >
+                    <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
+                    Upload file
+                </CustomInput>}
+
+                <ul className={styles["upload-file-wrapper"]}>
+                    {files && files.map((file: IFile) => (
+                        <li key={`${file.name}_${file.size}`} className={styles["uploaded-file"]}>
+                            <span className={styles["uploaded-file-name"]}>
+                                {file.name}
+                            </span>
+                            <Button colorStyle={"none"} handleClick={() => handleDeleteFile(file.name)}>
+                                <SvgIcons iconName={"trash"} styleName={styles["delete-icon"]} />
+                            </Button>
+                        </li>
+                    ))
+                        // : <li className={styles["uploaded-file-name"]}>choose file</li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    );
+}
+
+export default AdvancedSettings;
+
+{/* <div className={styles["upload-cover-wrapper"]}>
                         <label className={styles["label-cover"]}>
                             <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                             Upload cover
                             <input
-                                {...register('files')}
+                                {...register('cover')}
+                                name='cover'
                                 type="file"
-                                onChange={(event) => {
-                                    handleUploadDeleteCover(event.target.value)
-                                    event.target.value = ''
-                                }}
+                            onChange={(event) => {
+                                handleUploadFile(event)
+                                event.target.value = ''
+                            }}
                             />
                         </label>
                         <ul>
@@ -120,39 +130,4 @@ const AdvancedSettings: React.FC<IAdvancedSettings> = ({
                                 </li> : <li className={styles["uploaded-file-name"]}>choose file</li>
                             }
                         </ul>
-                    </div>
-                    <div className={styles["upload-file-wrapper"]}>
-                        <label className={styles["label-file"]}>
-                            <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
-                            Upload file
-                            <input
-                                {...register('cover')}
-                                type="file"
-                                onChange={(event) => {
-                                    handleUploadFile(event.target.value)
-                                    event.target.value = ''
-                                }}
-                            />
-                        </label>
-                        <ul>
-                            {files.length ? files.map((file: any) => (
-                                <li key={file.id} className={styles["uploaded-file"]}>
-                                    <span className={styles["uploaded-file-name"]}>
-                                        {file.fileName}
-                                    </span>
-                                    <Button colorStyle={"none"} handleClick={() => handleDeleteFile(file.id)}>
-                                        <SvgIcons iconName={"trash"} styleName={styles["delete-icon"]} />
-                                    </Button>
-                                </li>
-                            )) : <li className={styles["uploaded-file-name"]}>choose file</li>
-                            }
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default AdvancedSettings;
+                    </div> */}

@@ -53,9 +53,9 @@
         @extend %font-content-14px-medium;
         color: variables.$color-light-grey;
 
-        .form-radio-low {
-            @extend %element-position-center;
-        }
+        // .form-radio-low {
+        //     @extend %element-position-center;
+        // }
 
         .radio {
             display: flex;
@@ -125,36 +125,24 @@
 }
 
 .files-block-container {
-    width: 242px;
+    min-width: 242px;
     border: 1px solid variables.$color-light-grey;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .files-block-wrapper {
         display: flex;
-        flex-direction: column;
-        padding: 20px 20px 10px 25px;
+        // align-items: center;
+        // flex-direction: column;
+        // padding: 20px 20px;
     }
 
     input[type="file"] {
         display: none;
     }
-}
-
-.upload-cover-wrapper {
-    overflow: hidden;
-    margin-bottom: 20px;
-
-    .label-cover {
-        @extend %upload-label-style;
-    }
-
-    .upload-icon {
-        @extend %upload-icon-style;
-    }
-}
-
-.upload-file-wrapper {
-    overflow: hidden;
 
     .label-file {
         @extend %upload-label-style;
@@ -163,6 +151,34 @@
     .upload-icon {
         @extend %upload-icon-style;
     }
+}
+
+// .upload-cover-wrapper {
+//     overflow: hidden;
+//     margin-bottom: 20px;
+
+//     .label-cover {
+//         @extend %upload-label-style;
+//     }
+
+//     .upload-icon {
+//         @extend %upload-icon-style;
+//     }
+// }
+
+.upload-file-wrapper {
+    width: 240px;
+    padding: 0 20px;
+    overflow: hidden;
+    text-align: center;
+
+    // .label-file {
+    //     @extend %upload-label-style;
+    // }
+
+    // .upload-icon {
+    //     @extend %upload-icon-style;
+    // }
 }
 
 .uploaded-file {
