@@ -1,10 +1,8 @@
-export interface IUserDataClient {
-    username: string;
-    password: string;
-    email: string
-}
+import { IAuthInputs } from "../../components/AuthModalWindow/AuthModalWindow";
 
-export interface IUser {
+export interface IUserFormData extends IAuthInputs { };
+
+export interface IUserData {
     blocked: boolean;
     confirmed: boolean;
     createdAt: string;
@@ -17,12 +15,5 @@ export interface IUser {
 
 export interface IUserDataServer {
     jwt: string;
-    user: IUser
-}
-
-export interface IUserSlice {
-    currentUser: IUser,
-    jwt: null | string,
-    loadingStatus: boolean,
-    error: null | string,
+    user: IUserData
 }

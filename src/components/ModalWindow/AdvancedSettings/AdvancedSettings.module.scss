@@ -53,11 +53,11 @@
         @extend %font-content-14px-medium;
         color: variables.$color-light-grey;
 
-        .form-radio-low {
-            @extend %element-position-center;
-        }
+        // .form-radio-low {
+        //     @extend %element-position-center;
+        // }
 
-        .radio {
+        .label-radio {
             display: flex;
             align-items: center;
             // margin-right: 15px;
@@ -125,36 +125,13 @@
 }
 
 .files-block-container {
-    width: 242px;
+    min-width: 242px;
     border: 1px solid variables.$color-light-grey;
     border-radius: 10px;
-
-    .files-block-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding: 20px 20px 10px 25px;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-}
-
-.upload-cover-wrapper {
-    overflow: hidden;
-    margin-bottom: 20px;
-
-    .label-cover {
-        @extend %upload-label-style;
-    }
-
-    .upload-icon {
-        @extend %upload-icon-style;
-    }
-}
-
-.upload-file-wrapper {
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .label-file {
         @extend %upload-label-style;
@@ -163,6 +140,24 @@
     .upload-icon {
         @extend %upload-icon-style;
     }
+
+    .files-block-wrapper {
+        display: flex;
+        // align-items: center;
+        // flex-direction: column;
+        // padding: 20px 20px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+}
+
+.upload-file-wrapper {
+    width: 240px;
+    padding: 0 20px;
+    overflow: hidden;
+    text-align: center;
 }
 
 .uploaded-file {

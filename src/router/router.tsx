@@ -12,6 +12,8 @@ import TaskPage from '../pages/TaskPage/TaskPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import SignInPage from '../pages/SignInPage/SignInPage';
 import Auth from '../hoc/Auth';
+import ProjectDescriptionPage from '../pages/ProjectDescriptionPage/ProjectDescriptionPage';
+import ProjectBoardsPage from '../pages/ProjectBoardsPage/ProjectBoardsPage';
 
 const router = createBrowserRouter(createRoutesFromElements(
     <>
@@ -21,8 +23,11 @@ const router = createBrowserRouter(createRoutesFromElements(
             <Route path='projects/:id' element={<ProjectPage />} />
             <Route path='settings' element={<SettingsPage />} />
             <Route path='trash' element={<TrashPage />} />
-            <Route path='boards' element={<ProjectPage />} />
-            <Route path='projects/boards/task' element={<TaskPage />} />
+            <Route path='projects/:id' element={<ProjectPage />}>
+                <Route path='/projects/:id/boards' element={<ProjectBoardsPage />} />
+                <Route path='/projects/:id/description' element={<ProjectDescriptionPage />} />
+            </Route>
+            <Route path='projects/:id/boards/:id/task' element={<TaskPage />} />
             <Route path='*' element={<NotFound />} />
         </Route>
         <Route path='/signup' element={<SignUpPage />} />

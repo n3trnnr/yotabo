@@ -1,16 +1,11 @@
-import React, { ReactNode } from "react";
 import styles from './MainComponentHeader.module.scss'
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import ProjectNav from "./ProjectNav/ProjectNav";
-
-interface IMainComponentHeader {
-    type: 'info' | 'none';
-    children: ReactNode;
-}
+import { IMainComponentHeader } from './MainComponentHeader.props';
 
 //Компонент будет принимать данные в род.комп. sideBarData а не type будет влиять на ширину MainComponentHeader
 //sideBarData будет передаваться в sideBar
-const MainComponentHeader: React.FC<IMainComponentHeader> = ({ type, children }) => {
+const MainComponentHeader = ({ type, children, progressPercentage }: IMainComponentHeader) => {
 
     const setWidth = () => {
         if (type === 'info') return '50%';
@@ -23,7 +18,7 @@ const MainComponentHeader: React.FC<IMainComponentHeader> = ({ type, children })
                 <div className={styles['project-info']}>
                     <ProjectNav />
                     <div className={styles['progress-bar-container']}>
-                        <ProgressBar type={'big'} />
+                        <ProgressBar type={'big'} progressPercentage={progressPercentage ?? 0} />
                     </div>
                 </div>
             }

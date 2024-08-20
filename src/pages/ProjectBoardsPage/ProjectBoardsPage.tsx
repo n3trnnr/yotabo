@@ -1,9 +1,8 @@
-import React from "react";
-import styles from './Boards.module.scss'
-import TaskCard from "../TaskCard/TaskCard";
+import styles from './ProjectBoardsPage.module.scss'
+import TaskCard from "../../components/TaskCard/TaskCard";
 import { Link } from "react-router-dom";
 
-const Boards: React.FC = () => {
+const ProjectBoardsPage = () => {
     return (
         <div className={styles["boards-container"]}>
             <div className={styles["board-container"]}>
@@ -13,7 +12,7 @@ const Boards: React.FC = () => {
                 </div>
                 <div className={styles["board-wrapper"]}>
                     <ul className={styles["tasks-list-wrapper"]}>
-                        <Link to="task">
+                        <Link to="boards/:id/task">
                             <TaskCard />
                         </Link>
                         <TaskCard />
@@ -51,4 +50,4 @@ const Boards: React.FC = () => {
     );
 }
 
-export default Boards;
+export default ProjectBoardsPage;

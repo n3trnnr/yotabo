@@ -1,88 +1,86 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './ModalWindow.module.scss'
 import Button from "../UI/Button/Button";
 import SvgIcons from "../UI/Svg/SvgIcons";
 import AdvancedSettings from "./AdvancedSettings/AdvancedSettings";
-import { nanoid } from "nanoid";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { IModalWindow } from "./ModalWindow.props";
+import { useAppDispatch } from "../../hooks/useStore";
+import { postProjectData } from "../../store/slices/projectSlice";
+import { postTaskData } from "../../store/slices/taskSlice";
 
-interface IModalWindow {
-    type: "simple" | "advanced";
-    modalWindowTitle: string;
-    handleShowModal: (state: boolean) => void;
+export interface IModalWindowInputs {
+    title: string,
+    description: string,
+    priority?: 'low' | 'med' | 'high',
+    deadline?: string,
+    files?: File[]
 }
 
-const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleShowModal }) => {
+export interface IFile {
+    name: string,
+    size: number,
+}
 
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [priority, setPriority] = useState('')
-    const [deadline, setDeadline] = useState('')
-    const [cover, setCover] = useState('')
-    const [files, setFiles] = useState<any>([])
+const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) => {
 
-    const id = nanoid()
+    const dispatch = useAppDispatch()
 
-    const newProject = {
-        id: id,
-        title: title,
-        description: description,
-        progress: 0,
-        creationDate: new Date().toLocaleDateString(),
-        isFavorites: false,
-        isDeleted: false
-    }
+    const [files, setFiles] = useState<IFile[]>([])
+    console.log('files', files);
 
-    const newTask = {
-        id: id,
-        title: title,
-        description: description,
-        priority: priority,
-        creationDate: new Date().toLocaleDateString(),
-        deadline: deadline,
-        cover: cover,
-        files: files
-    }
+    const { register, handleSubmit, watch, reset, // formState: { errors, isValid }
+    } = useForm<IModalWindowInputs>({ mode: 'onBlur' })
 
-    const handleUploadFile = (fileName: string) => {
-        const fileId = nanoid()
-        const newFile = {
-            id: fileId,
-            fileName: fileName
-        }
-        setFiles([...files, newFile])
-    }
+    useEffect(() => {
+        const subscription = watch((data) => {
+            if (data.files) {
+                const file = data.files[0]
+                if (file && files.length === 0) {
+                    setFiles([...files, { name: file?.name, size: file?.size }])
+                }
+            }
+        })
 
-    const handleDeleteFile = (id: string) => {
-        const filteredFiles = files.filter((file: any) => file.id !== id)
+        return () => subscription.unsubscribe()
+    }, [watch, files])
+
+    const handleDeleteFile = (name: string) => {
+        const filteredFiles = files.filter((file: IFile) => file.name !== name)
         setFiles([...filteredFiles])
     }
 
-    const handleUploadDeleteCover = (coverName: string) => {
-        setCover(coverName)
+    const submit: SubmitHandler<IModalWindowInputs> = async (data) => {
+        if (type === "simple") {
+            postProjectFormData(data)
+        } else if (type === "advanced") {
+            dispatch(postTaskData(data))
+        }
+        reset()
+        handleShowModal(false)
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        if (type === "simple") {
-            console.log("simple - ", newProject);
-        } else if (type === "advanced") {
-            console.log("advanced - ", newTask);
-        }
-        handleShowModal(false)
+    const postProjectFormData = (data: IModalWindowInputs) => {
+        dispatch(postProjectData(data))
+    }
+
+    const postTaskFormData = () => {
+
     }
 
     return (
         <div className={styles["modal-window-container"]}>
-            <form onSubmit={(event) => handleSubmit(event)} className={styles["form-wrapper"]}>
+            <form onSubmit={handleSubmit(submit)} className={styles["form-wrapper"]}>
                 <div className={styles.title}>{modalWindowTitle}</div>
                 <input
-                    onChange={(event) => setTitle(event.target.value)}
+                    {...register('title')}
+                    name="title"
                     className={styles["input-title"]} type="text"
                     required
                     placeholder="Title"
                 />
                 <textarea
-                    onChange={(event) => setDescription(event.target.value)}
+                    {...register('description')}
                     className={styles["textarea-description"]}
                     rows={5}
                     cols={40}
@@ -91,20 +89,17 @@ const ModalWindow: React.FC<IModalWindow> = ({ type, modalWindowTitle, handleSho
                 />
                 {type === "advanced" &&
                     <AdvancedSettings
+                        register={register}
                         files={files}
-                        handleUploadFile={handleUploadFile}
                         handleDeleteFile={handleDeleteFile}
-                        cover={cover}
-                        handleUploadDeleteCover={handleUploadDeleteCover}
-                        handeSetPriority={setPriority}
-                        handleSetDeadline={setDeadline}
                     />
                 }
                 <div className={styles["buttons-wrapper"]}>
-                    <button className={styles["button-create"]}>Create</button>
+                    <button type="submit" className={styles["button-create"]}>Create</button>
                     <input type="button" onClick={() => handleShowModal(false)} className={styles["button-cancel"]} value={"Cancel"} />
                 </div>
             </form>
+
             <Button handleClick={() => handleShowModal(false)} colorStyle={"none"} buttonShape={"none"} styleName={styles['cross-close']}>
                 <SvgIcons iconName={"cross"} />
             </Button>

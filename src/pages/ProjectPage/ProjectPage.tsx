@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MainComponentHeader from '../../components/MainComponentHeader/MainComponentHeader';
 import styles from './ProjectPage.module.scss'
-import Boards from '../../components/Boards/Boards';
 import Button from '../../components/UI/Button/Button';
 import SvgIcons from '../../components/UI/Svg/SvgIcons';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { getProjectDataById } from '../../store/slices/projectSlice';
+import ProjectBoardsPage from '../ProjectBoardsPage/ProjectBoardsPage';
+import ProjectDescriptionPage from '../ProjectDescriptionPage/ProjectDescriptionPage';
 
-const ProjectPage: React.FC = () => {
+const ProjectPage = () => {
+    const location = useLocation()
+    // console.log('location', location);
+
+    const { id } = useParams()
+    const dispatch = useAppDispatch()
+    const project = useAppSelector((state) => state.project.project)
+    // console.log('project', project);
+
+
+    useEffect(() => {
+        if (id) {
+            dispatch(getProjectDataById(+id))
+        }
+    }, [])
 
     const [showModal, setShowModal] = useState<boolean>(false)
     const handleShowModal = (isShown: boolean) => {
@@ -21,7 +39,10 @@ const ProjectPage: React.FC = () => {
                 </div>
             }
 
-            <MainComponentHeader type={'info'}>
+            <MainComponentHeader
+                type={'info'}
+                progressPercentage={project?.data.attributes.progress}
+            >
                 <Button buttonShape={'square'} colorStyle={'light-grey'} margin={'10px'}>
                     <SvgIcons iconName={'boardView'} />
                 </Button>
@@ -36,7 +57,9 @@ const ProjectPage: React.FC = () => {
                 </Button>
             </MainComponentHeader>
 
-            <Boards />
+            {/* <Outlet /> */}
+            {location.pathname.endsWith('boards') ? <ProjectBoardsPage /> : <ProjectDescriptionPage project={project?.data} />}
+
         </>
     );
 }

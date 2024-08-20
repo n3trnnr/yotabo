@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form'
 import styles from './AuthModalWindow.module.scss'
 import SvgIcons from '../UI/Svg/SvgIcons';
@@ -7,14 +7,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
 import { loginUser, registerUser } from '../../store/slices/userSlice';
 import { IAuthModalWindow } from './AuthModalWindow.props';
 
-interface IInputs {
+export interface IAuthInputs {
     username: string,
     identifier: string,
     password: string,
     email: string
 }
 
-const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
+const AuthModalWindow = ({ type }: IAuthModalWindow) => {
 
     const dispatch = useAppDispatch()
     const { error, loadingStatus, jwt } = useAppSelector((state) => state.user)
@@ -31,11 +31,11 @@ const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
         handleSubmit,
         reset,
         formState: { errors, isValid }
-    } = useForm<IInputs>({
+    } = useForm<IAuthInputs>({
         mode: 'onChange'
     })
 
-    const submit: SubmitHandler<IInputs> = (data) => {
+    const submit: SubmitHandler<IAuthInputs> = (data) => {
         if (type === 'signup') {
             registration(data)
         } else {
@@ -44,11 +44,11 @@ const AuthModalWindow: React.FC<IAuthModalWindow> = ({ type }) => {
         reset()
     }
 
-    const registration = async (data: IInputs) => {
+    const registration = async (data: IAuthInputs) => {
         dispatch(registerUser(data))
     }
 
-    const login = (data: IInputs) => {
+    const login = (data: IAuthInputs) => {
         dispatch(loginUser(data))
     }
 

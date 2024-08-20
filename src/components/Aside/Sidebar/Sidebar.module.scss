@@ -24,6 +24,9 @@
 
 .main-nav-list {
     height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .aside-nav-icon {
@@ -35,13 +38,12 @@
 .item-wrapper {
     width: 100%;
     height: 45px;
-    margin-bottom: 10px;
+    display: flex;
     box-sizing: border-box;
     transition: variables.$transition-time;
-
+    cursor: pointer;
 
     .nav-item {
-        cursor: pointer;
         @extend %nav-item-position-center;
     }
 
@@ -51,6 +53,13 @@
         color: variables.$color-black;
         @extend %icon-color-black;
     }
+}
+
+.active {
+    color: black;
+    border-right: 3px solid;
+    color: variables.$color-black;
+    @extend %icon-color-black;
 }
 
 .nav-item-logout {

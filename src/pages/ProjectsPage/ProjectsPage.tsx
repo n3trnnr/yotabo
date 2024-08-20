@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainComponentHeader from '../../components/MainComponentHeader/MainComponentHeader'
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
@@ -6,17 +6,24 @@ import styles from './ProjectsPage.module.scss'
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import Button from '../../components/UI/Button/Button';
 import SvgIcons from '../../components/UI/Svg/SvgIcons';
+import { useAppDispatch, useAppSelector } from '../../hooks/useStore';
+import { getProjectsData } from '../../store/slices/projectSlice';
 
-//Не забыть переписать путь в Link на projects/id
-
-const ProjectsPage: React.FC = () => {
-
-    const navigate = useNavigate()
-
+const ProjectsPage = () => {
+    const dispatch = useAppDispatch()
+    const projects = useAppSelector((state) => state.project.projects)
     const [showModal, setShowModal] = useState<boolean>(false)
     const handleShowModal = (isShown: boolean) => {
         setShowModal(isShown)
     }
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        dispatch(getProjectsData())
+    }, [dispatch])
+
+    // console.log('projects', projects);
+
 
     return (
         <>
@@ -44,18 +51,12 @@ const ProjectsPage: React.FC = () => {
             <div className={styles['projects-list-container']}>
                 <div className={styles['projects-list-wrapper']}>
 
-                    <div onDoubleClick={() => navigate('boards')}>
-                        <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    </div>
+                    {projects && projects?.data.map((project) => (
+                        <div onDoubleClick={() => navigate(`/projects/${project.id}/boards`)} key={project.id}>
+                            <ProjectCard key={project.id} projectData={project} />
+                        </div>
+                    ))}
 
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
-                    <ProjectCard title={'Task-board'} description={'Проект для структурирования работы с задачами'} creationDate={'20.12.23'} />
                 </div>
             </div>
         </>
