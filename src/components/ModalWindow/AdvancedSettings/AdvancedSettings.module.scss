@@ -57,7 +57,7 @@
         //     @extend %element-position-center;
         // }
 
-        .radio {
+        .label-radio {
             display: flex;
             align-items: center;
             // margin-right: 15px;
@@ -133,6 +133,14 @@
     align-items: center;
     flex-direction: column;
 
+    .label-file {
+        @extend %upload-label-style;
+    }
+
+    .upload-icon {
+        @extend %upload-icon-style;
+    }
+
     .files-block-wrapper {
         display: flex;
         // align-items: center;
@@ -143,42 +151,13 @@
     input[type="file"] {
         display: none;
     }
-
-    .label-file {
-        @extend %upload-label-style;
-    }
-
-    .upload-icon {
-        @extend %upload-icon-style;
-    }
 }
-
-// .upload-cover-wrapper {
-//     overflow: hidden;
-//     margin-bottom: 20px;
-
-//     .label-cover {
-//         @extend %upload-label-style;
-//     }
-
-//     .upload-icon {
-//         @extend %upload-icon-style;
-//     }
-// }
 
 .upload-file-wrapper {
     width: 240px;
     padding: 0 20px;
     overflow: hidden;
     text-align: center;
-
-    // .label-file {
-    //     @extend %upload-label-style;
-    // }
-
-    // .upload-icon {
-    //     @extend %upload-icon-style;
-    // }
 }
 
 .uploaded-file {

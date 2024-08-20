@@ -6,5 +6,5 @@ export interface ICustomInput extends InputHTMLAttributes<HTMLInputElement> {
     children?: ReactNode,
     register: UseFormRegister<IModalWindowInputs>,
     inputName: keyof IModalWindowInputs,
-    labelClassName: string
+    labelClassName?: string
 }

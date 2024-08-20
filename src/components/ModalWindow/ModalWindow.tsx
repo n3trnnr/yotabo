@@ -6,14 +6,15 @@ import AdvancedSettings from "./AdvancedSettings/AdvancedSettings";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IModalWindow } from "./ModalWindow.props";
 import { useAppDispatch } from "../../hooks/useStore";
-import { postProjectsData } from "../../store/slices/projectSlice";
+import { postProjectData } from "../../store/slices/projectSlice";
+import { postTaskData } from "../../store/slices/taskSlice";
 
 export interface IModalWindowInputs {
     title: string,
     description: string,
     priority?: 'low' | 'med' | 'high',
     deadline?: string,
-    file?: File[]
+    files?: File[]
 }
 
 export interface IFile {
@@ -33,8 +34,8 @@ const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) 
 
     useEffect(() => {
         const subscription = watch((data) => {
-            if (data.file) {
-                const file = data.file[0]
+            if (data.files) {
+                const file = data.files[0]
                 if (file && files.length === 0) {
                     setFiles([...files, { name: file?.name, size: file?.size }])
                 }
@@ -45,22 +46,22 @@ const ModalWindow = ({ type, modalWindowTitle, handleShowModal }: IModalWindow) 
     }, [watch, files])
 
     const handleDeleteFile = (name: string) => {
-        const filteredFiles = files.filter((file: any) => file.name !== name)
+        const filteredFiles = files.filter((file: IFile) => file.name !== name)
         setFiles([...filteredFiles])
     }
 
     const submit: SubmitHandler<IModalWindowInputs> = async (data) => {
         if (type === "simple") {
             postProjectFormData(data)
-            reset()
         } else if (type === "advanced") {
-            console.log('advanced data', data);
+            dispatch(postTaskData(data))
         }
+        reset()
         handleShowModal(false)
     }
 
     const postProjectFormData = (data: IModalWindowInputs) => {
-        dispatch(postProjectsData(data))
+        dispatch(postProjectData(data))
     }
 
     const postTaskFormData = () => {

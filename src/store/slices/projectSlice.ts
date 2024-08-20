@@ -4,8 +4,10 @@ import { RootState } from "../../store/store";
 import { IProject, IProjectFormData, IProjects } from "../../interfaces/store/projectSlice";
 
 interface IProjectSlice {
+    project: IProject | null,
     projects: IProjects | null,
-    project: IProject | null
+    error: string | null,
+    status: string | null
 }
 
 export const getProjectsData = createAsyncThunk<IProjects, void, { rejectValue: string, state: RootState }>(
@@ -50,13 +52,13 @@ export const getProjectDataById = createAsyncThunk<IProject, number, { rejectVal
     }
 )
 
-export const postProjectsData = createAsyncThunk<IProject, IProjectFormData, { rejectValue: string, state: RootState }>(
-    'project/postProjectsData',
-    async (ProjectDataClient, { rejectWithValue, getState }) => {
+export const postProjectData = createAsyncThunk<IProject, IProjectFormData, { rejectValue: string, state: RootState }>(
+    'project/postProjectData',
+    async (projectDataClient, { rejectWithValue, getState }) => {
         const jwt = getState().user.jwt;
         const userId = getState().user.currentUser?.id
 
-        ProjectDataClient.user = userId
+        projectDataClient.user = userId
 
         const response = await fetch(`${PREFIX}/api/projects`, {
             method: 'POST',
@@ -66,7 +68,7 @@ export const postProjectsData = createAsyncThunk<IProject, IProjectFormData, { r
             },
             body: JSON.stringify(
                 {
-                    data: { ...ProjectDataClient }
+                    data: { ...projectDataClient }
                 }
             )
         })
@@ -82,8 +84,10 @@ export const postProjectsData = createAsyncThunk<IProject, IProjectFormData, { r
 )
 
 const initialState: IProjectSlice = {
+    project: null,
     projects: null,
-    project: null
+    error: null,
+    status: null
 }
 
 const projectSlice = createSlice({
@@ -105,8 +109,8 @@ const projectSlice = createSlice({
                 state.project = action.payload
             })
 
-            .addCase(postProjectsData.fulfilled, (state, action) => {
-                // console.log('postProjectsData', action.payload);
+            .addCase(postProjectData.fulfilled, (state, action) => {
+                // console.log('postProjectData', action.payload);
                 if (state.projects) {
                     state.projects.data.push(action.payload.data)
                 }

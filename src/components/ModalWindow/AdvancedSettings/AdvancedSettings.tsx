@@ -16,67 +16,69 @@ const AdvancedSettings = ({ register, files, handleDeleteFile }: IAdvancedSettin
                             Priority
                         </div>
                         <div className={styles["radio-group-wrapper"]}>
-                            <label className={styles["radio"]}>
-                                <input
-                                    {...register('priority', { required: true })}
-                                    className={styles["input-radio"]}
-                                    type="radio"
-                                    name="priority"
-                                    defaultValue={"low"}
-                                />
+                            <CustomInput
+                                register={register}
+                                inputName={'priority'}
+                                labelClassName={styles["label-radio"]}
+                                type={'radio'}
+                                defaultValue={'low'}
+                                className={styles["input-radio"]}
+                                required
+                            >
                                 <span className={styles["radio-description"]}>
                                     Low
                                 </span>
-                            </label>
-                            <label className={styles["radio"]}>
-                                <input
-                                    {...register('priority', { required: true })}
-                                    className={styles["input-radio"]}
-                                    type="radio"
-                                    name="priority"
-                                    defaultValue={"med"}
-                                />
+                            </CustomInput>
+                            <CustomInput
+                                register={register}
+                                inputName={'priority'}
+                                labelClassName={styles["label-radio"]}
+                                type={'radio'}
+                                defaultValue={'med'}
+                                className={styles["input-radio"]}
+                                required
+                            >
                                 <span className={styles["radio-description"]}>
                                     Med
                                 </span>
-                            </label>
-                            <label className={styles["radio"]}>
-                                <input
-                                    {...register('priority', { required: true })}
-                                    className={styles["input-radio"]}
-                                    type="radio"
-                                    name="priority"
-                                    defaultValue={"high"}
-                                />
+                            </CustomInput>
+                            <CustomInput
+                                register={register}
+                                inputName={'priority'}
+                                labelClassName={styles["label-radio"]}
+                                type={'radio'}
+                                defaultValue={'high'}
+                                className={styles["input-radio"]}
+                                required
+                            >
                                 <span className={styles["radio-description"]}>
                                     High
                                 </span>
-                            </label>
+                            </CustomInput>
                         </div>
                     </div>
+
                     <div className={styles["deadline-wrapper"]}>
                         <div className={styles["deadline-title"]}>
                             Deadline
                         </div>
-                        <div >
-                            <input
-                                {...register('deadline', { required: true })}
-                                className={styles["deadline-input"]}
-                                type="date"
-                                name="deadline"
-                            />
-                        </div>
+                        <CustomInput
+                            register={register}
+                            inputName={'deadline'}
+                            type={'date'}
+                            className={styles["deadline-input"]}
+                            required
+                        />
                     </div>
                 </div>
             </div>
 
             <div className={styles["files-block-container"]}>
-
                 {!files?.length && <CustomInput
                     type={'file'}
                     register={register}
                     labelClassName={styles["label-file"]}
-                    inputName={'file'}
+                    inputName={'files'}
                 >
                     <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
                     Upload file
@@ -103,31 +105,3 @@ const AdvancedSettings = ({ register, files, handleDeleteFile }: IAdvancedSettin
 }
 
 export default AdvancedSettings;
-
-{/* <div className={styles["upload-cover-wrapper"]}>
-                        <label className={styles["label-cover"]}>
-                            <SvgIcons iconName={"uploadFile"} styleName={styles["upload-icon"]} />
-                            Upload cover
-                            <input
-                                {...register('cover')}
-                                name='cover'
-                                type="file"
-                            onChange={(event) => {
-                                handleUploadFile(event)
-                                event.target.value = ''
-                            }}
-                            />
-                        </label>
-                        <ul>
-                            {cover ?
-                                <li className={styles["uploaded-file"]}>
-                                    <span className={styles["uploaded-file-name"]}>
-                                        {cover}
-                                    </span>
-                                    <Button handleClick={() => handleUploadDeleteCover('')} colorStyle={"none"}>
-                                        <SvgIcons iconName={"trash"} styleName={styles["delete-icon"]} />
-                                    </Button>
-                                </li> : <li className={styles["uploaded-file-name"]}>choose file</li>
-                            }
-                        </ul>
-                    </div> */}
